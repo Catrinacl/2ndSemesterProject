@@ -1,26 +1,41 @@
 package GUI;
 
 import Controller.Controller;
-import Model.Destillat;
 import Model.Fad;
-import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import java.util.List;
+import java.util.stream.Collectors;
 import static javafx.collections.FXCollections.observableArrayList;
 
 
 public class FadOversigtPane extends GridPane {
 
     private TableView<Fad> tableView;
+    private TextField searchBar = new TextField();
 
     public FadOversigtPane() {
+        this.setPadding(new Insets(20));
+        this.setHgap(10);
+        this.setVgap(15);
+
+        //række 0
+        this.add(new Label("Søg efter Fad ID:"), 0, 0);
+        this.add(searchBar, 1, 0);
+
+        //række 1
         this.initContent();
-        this.add(tableView, 0, 0);
-        this.updateFadOversigt();
+        this.add(tableView, 0, 1, 2, 1);
+
+        this.updateFadOversigt(null);
+        searchBar.textProperty().addListener((obs, oldText, newText) -> updateFadOversigt(newText));
+
+
     }
 
     private void initContent() {
@@ -29,7 +44,7 @@ public class FadOversigtPane extends GridPane {
         //Kolonne 1
         TableColumn<Fad, String> columnFadId = new TableColumn<>("Fad ID");
         columnFadId.setCellValueFactory(new PropertyValueFactory<>("fadId"));
-        columnFadId.setPrefWidth(50);
+        columnFadId.setPrefWidth(100);
 
         //Kolonne 2
         TableColumn<Fad, String> columnDestillatIndhold = new TableColumn<>("Indhold (Destillat ID)");
@@ -47,11 +62,25 @@ public class FadOversigtPane extends GridPane {
 
         tableView.setMaxHeight(Double.MAX_VALUE);
         tableView.setMaxWidth(Double.MAX_VALUE);
+
+        this.add(new Label("Søg efter fad:"), 1, 0);
+
     }
 
-    public void updateFadOversigt() {
-        //List<Fad> alleFade = Controller.getFade();
+    public void updateFadOversigt(String searchText) {
+        List<Fad> alleFade = Controller.getFade();
 
-        //tableView.setItems(observableArrayList(alleFade));
+        final String filterText = (searchText != null ? searchText : searchBar.getText()).toLowerCase();
+
+        List<Fad> filteredList = alleFade.stream()
+                // Filtrer kun hvis søgeteksten er mere end tom
+                .filter(fad -> filterText.isEmpty() || fad.getFadId().toLowerCase().contains(filterText))
+                .collect(Collectors.toList());
+
+        // Opdater TableView
+        tableView.setItems(observableArrayList(filteredList));
     }
+
+
+
 }
