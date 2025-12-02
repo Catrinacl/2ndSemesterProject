@@ -35,6 +35,11 @@ public class FadOversigtPane extends GridPane {
         this.updateFadOversigt(null);
         searchBar.textProperty().addListener((obs, oldText, newText) -> updateFadOversigt(newText));
 
+        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, selectedFad) -> {
+            if (selectedFad != null) {
+                new FadDetaljeWindow(selectedFad).show();
+            }
+        });
 
     }
 
