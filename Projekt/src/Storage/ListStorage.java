@@ -1,10 +1,11 @@
 package Storage;
 
+import Controller.Storage;
 import Model.*;
 
 import java.util.ArrayList;
 
-public class Storage {
+public class ListStorage implements Storage {
 
     private ArrayList<Lager> lagre = new ArrayList<>();
     private ArrayList<Reol> reoler = new ArrayList<>();
