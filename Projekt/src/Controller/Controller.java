@@ -1,10 +1,13 @@
 package Controller;
 
+import GUI.Observer;
+
 import Model.*;
 import Storage.ListStorage;
 
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.util.List;
 
 public abstract class Controller {
 
@@ -173,5 +176,20 @@ public abstract class Controller {
     }
 
     public static ArrayList<Paafyldning> getPaafyldninger() {return storage.getPaafyldninger();
+    }
+
+
+    // OBSERVER
+
+    private static final List<Observer> observers = new ArrayList<>();
+
+    public static void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    private static void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update();
+        }
     }
 }
