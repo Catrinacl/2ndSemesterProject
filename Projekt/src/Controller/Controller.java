@@ -88,7 +88,7 @@ public abstract class Controller {
                                             double alkoholPc,
                                             ArrayList<MaengdeDestilleret> maengder) {
 
-        // beregn totalmaengeL ud fra maengde-listen
+
         double totalmaengeL = 0;
         for (MaengdeDestilleret m : maengder) {
             totalmaengeL += m.getLiter();

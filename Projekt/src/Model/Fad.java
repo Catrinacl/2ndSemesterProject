@@ -50,6 +50,11 @@ public class Fad {
         return hylde;
     }
 
+    public void addPaafyldning(Paafyldning p) {
+        paafyldninger.add(p);
+    }
+
+
     @Override
     public String toString() {
         return "Fad{" +
