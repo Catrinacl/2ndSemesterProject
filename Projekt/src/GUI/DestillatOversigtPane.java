@@ -13,13 +13,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 import static javafx.collections.FXCollections.observableArrayList;
 
-public class DestillatOversigtPane extends GridPane {
+public class DestillatOversigtPane extends GridPane implements Observer {
 
     private TableView<Destillat> tableView;
     private TextField searchBar = new TextField();
 
 
     public DestillatOversigtPane() {
+        Controller.addObserver(this);
+
         this.setPadding(new Insets(20));
         this.setHgap(10);
         this.setVgap(15);
@@ -43,7 +45,7 @@ public class DestillatOversigtPane extends GridPane {
     }
 
     private void initContent() {
-        tableView = new TableView<Destillat>();
+        tableView = new TableView<>();
 
         //Kolonne 1
         TableColumn<Destillat, String> columnDestillatId = new TableColumn<>("Destillat ID");
@@ -65,19 +67,23 @@ public class DestillatOversigtPane extends GridPane {
         tableView.getColumns().add(columnMængde);
 
         tableView.setMaxHeight(Double.MAX_VALUE);
-        tableView.setMaxHeight(Double.MAX_VALUE);
         tableView.setMaxWidth(Double.MAX_VALUE);
     }
 
     public void updateDestillatOversigt(String searchText) {
         List<Destillat> alleDestillater = Controller.getDestillater();
 
-        final String filterText = (searchText != null ? searchText : searchBar.getText()).toLowerCase();
+        final String filterText = (searchText != null ? searchText : searchBar.getText()).trim().toLowerCase();
 
         List<Destillat> filteredList = alleDestillater.stream()
                 .filter(destillat -> filterText.isEmpty() || destillat.getDestilatID().toLowerCase().contains(filterText))
                 .collect(Collectors.toList());
 
         tableView.setItems(observableArrayList(filteredList));
+    }
+
+    @Override
+    public void update() {
+        updateDestillatOversigt(null);
     }
 }
