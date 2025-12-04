@@ -19,6 +19,6 @@ public class DestillatDetaljeWindow extends Stage {
         pane.add(new Label("New Make ID: " + destillat.getNewMakeID()), 0, 1);
         pane.add(new Label("Total mængde i Liter: " + destillat.getTotalmaengeL()), 0, 2);
         pane.add(new Label("Alkohol i %: " + destillat.getAlkoholPc()), 0, 3);
-        pane.add(new Label("Mængde destilleret: " + destillat.getMaengder()), 0, 4);
+        pane.add(new Label("Mængde destilleret: " + destillat.getMaengderToString()), 0, 4);
     }
 }

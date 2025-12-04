@@ -18,9 +18,10 @@ public abstract class Controller {
 
 
 
-    public static Lager createLager(String lagerId, String lagerType, String adresse, ArrayList<Reol> reoler) {
-        Lager lager = new Lager(lagerId, lagerType, adresse, reoler);
+    public static Lager createLager(String lagerId, String lagerType, String adresse) {
+        Lager lager = new Lager(lagerId, lagerType, adresse);
         storage.addLager(lager);
+        notifyObservers();
         return lager;
     }
 
@@ -31,6 +32,7 @@ public abstract class Controller {
     public static Reol createReol(String reolId, String reolType, ArrayList<Hylde> hylder, Lager lager) {
         Reol reol = new Reol(reolId, reolType, hylder, lager);
         storage.addReol(reol);
+        notifyObservers();
         return reol;
     }
 
@@ -42,6 +44,7 @@ public abstract class Controller {
                              ArrayList<Fad> fade, Reol reol) {
         Hylde hylde = new Hylde(hyldeId, kapacitet, placering, hyldeType, fade, reol);
         storage.addHylde(hylde);
+        notifyObservers();
         return hylde;
     }
 
@@ -53,6 +56,7 @@ public abstract class Controller {
                          String status, ArrayList<Paafyldning> paafyldninger, Hylde hylde) {
         Fad fad = new Fad(fadId, stoerrelseL, traeType, tidligereIndhold, status, paafyldninger, hylde);
         storage.addFad(fad);
+        notifyObservers();
         return fad;
     }
 
@@ -71,6 +75,7 @@ public abstract class Controller {
         Destillering d = new Destillering(distilleringsID, startDato, slutDato,
                 maltBatch, kornsort, rygemateriale, kommentar);
         storage.addDestillering(d);
+        notifyObservers();
         return d;
     }
 
@@ -82,10 +87,11 @@ public abstract class Controller {
                                             String newMakeID,
                                             double totalmaengeL,
                                             double alkoholPc,
-                                            ArrayList<Destillering> destilleringer) {
+                                            ArrayList<MaengdeDestilleret> maengdeDestillerets) {
         Destillat destillat = new Destillat(destilatID, newMakeID, totalmaengeL, alkoholPc);
 
         storage.addDestillat(destillat);
+        notifyObservers();
         return destillat;
     }
 
@@ -97,6 +103,7 @@ public abstract class Controller {
                                                        Destillering destillering) {
         MaengdeDestilleret m = new MaengdeDestilleret(liter, destillering);
         storage.addMaengdeDestilleret(m);
+        notifyObservers();
         return m;
     }
 
@@ -116,6 +123,7 @@ public abstract class Controller {
                 slutAlkoholProcent, erSingleCask,
                 antalFlasker, vandTilsaetning);
         storage.addWhiskyProdukt(wp);
+        notifyObservers();
         return wp;
     }
 
@@ -131,6 +139,7 @@ public abstract class Controller {
                                      WhiskyProdukt whiskyProdukt) {
         Aftapning a = new Aftapning(aftapningsNr, alkoholProcent, dato, volumenILiter, destillat, whiskyProdukt);
         storage.addAftapning(a);
+        notifyObservers();
         return a;
     }
 
@@ -144,6 +153,7 @@ public abstract class Controller {
                                                  WhiskyProdukt whiskyProdukt) {
         VandTilsaetning v = new VandTilsaetning(vandTilsaetning, vandMaengde, vandKilde, whiskyProdukt);
         storage.addVandTilsaetning(v);
+        notifyObservers();
         return v;
     }
 
@@ -155,6 +165,7 @@ public abstract class Controller {
     public static LagerMedarbejder createLagerMedarbejder(String medarbejderNr, String navn) {
         LagerMedarbejder m = new LagerMedarbejder(medarbejderNr, navn);
         storage.addLagerMedarbejder(m);
+        notifyObservers();
         return m;
     }
 
@@ -170,6 +181,7 @@ public abstract class Controller {
         Paafyldning p = new Paafyldning(paafyldningstid, maengdeL,
                 alkoholPcVedPaafyldning, dato, udfoertAf);
         storage.addPaafyldning(p);
+        notifyObservers();
         return p;
     }
 

@@ -34,7 +34,15 @@ public class Destillat {
         return alkoholPc;
     }
 
-    public String getMaengder() {
+    public void addMaengdeDestilleret(MaengdeDestilleret m) {
+        maengdeDestilleret.add(m);
+    }
+
+    public ArrayList<MaengdeDestilleret> getMaengdeDestilleret() {
+        return new ArrayList<>(maengdeDestilleret);
+    }
+
+    public String getMaengderToString() {
         String result = "";
 
         if (maengdeDestilleret != null) {

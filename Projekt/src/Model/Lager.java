@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lager {
@@ -8,11 +9,11 @@ public class Lager {
     private String adresse;
     private List<Reol> reoler;
 
-    public Lager(String lagerId, String lagerType, String adresse, List<Reol> reoler) {
+    public Lager(String lagerId, String lagerType, String adresse) {
         this.lagerId = lagerId;
         this.lagerType = lagerType;
         this.adresse = adresse;
-        this.reoler = reoler;
+        this.reoler = new ArrayList<>();
     }
 
     public String getLagerId() {
@@ -29,6 +30,10 @@ public class Lager {
 
     public List<Reol> getReoler() {
         return reoler;
+    }
+
+    public void addReol(Reol reol) {
+        this.reoler.add(reol);
     }
 
 
