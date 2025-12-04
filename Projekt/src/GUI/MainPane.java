@@ -32,15 +32,20 @@ public class MainPane extends Application{
     private void initTabPane(TabPane tabPane) {
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
-        Tab tabFad = new Tab("Oversigt over fade");
-        tabPane.getTabs().add(tabFad);
-        FadOversigtPane fadPane = new FadOversigtPane();
-        tabFad.setContent(fadPane);
+        Tab tabDestillering = new Tab("Oversigt over destilleringer");
+        tabPane.getTabs().add(tabDestillering);
+        DestilleringOversigtPane destilleringOversigtPane = new DestilleringOversigtPane();
+        tabDestillering.setContent(destilleringOversigtPane);
 
         Tab tabDestilat = new Tab("Oversigt over destillater");
         tabPane.getTabs().add(tabDestilat);
         DestillatOversigtPane destilatPane = new DestillatOversigtPane();
         tabDestilat.setContent(destilatPane);
+
+        Tab tabFad = new Tab("Oversigt over fade");
+        tabPane.getTabs().add(tabFad);
+        FadOversigtPane fadPane = new FadOversigtPane();
+        tabFad.setContent(fadPane);
 
         Tab tabOpret = new Tab("Opret");
         tabPane.getTabs().add(tabOpret);
