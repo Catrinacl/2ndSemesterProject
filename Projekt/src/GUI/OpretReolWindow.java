@@ -2,6 +2,8 @@ package GUI;
 
 import Controller.Controller;
 
+import Model.Hylde;
+import Model.Lager;
 import Model.Reol;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -20,8 +22,8 @@ public class OpretReolWindow extends Stage {
 
     private TextField txfReolId;
     private TextField txfReolType;
-  //  private TextField txfHylde;
-  //  private TextField txfLager;
+    private TextField txfHylde;
+    private TextField txfLager;
 
     private final ListView<Reol> lvwReol = new ListView<>();
     private final ListView<Reol> lvwIndhold = new ListView<>();
@@ -44,6 +46,12 @@ public class OpretReolWindow extends Stage {
         pane.setHgap(10);
         pane.setVgap(10);
 
+        txfReolId = new TextField();
+        txfReolType = new TextField();
+        txfHylde = new TextField();
+        txfLager = new TextField();
+
+
         Label lblHeader = new Label("Opret Ny Reol");
         pane.add(lblHeader, 0, 0, 2, 1);
 
@@ -60,11 +68,11 @@ public class OpretReolWindow extends Stage {
         pane.add(new Label("Reol Type:"), 0, 5);
         pane.add(txfReolType, 1, 5);
 
-    //    pane.add(new Label("Hylde"), 0, 6);
-    //    pane.add(txfHylde, 1, 6);
+        pane.add(new Label("Hylde:"), 0, 6);
+        pane.add(txfHylde, 1, 6);
 
-   //     pane.add(new Label("Lager:"), 0, 7);
-   //     pane.add(txfLager, 1, 7);
+        pane.add(new Label("Lager:"), 0, 7);
+        pane.add(txfLager, 1, 7);
 
         Label lblIndhold = new Label("Valgt indhold:");
         pane.add(lblIndhold, 0, 10);
@@ -81,14 +89,14 @@ public class OpretReolWindow extends Stage {
     private void opretReolAction() {
         String reolId =  txfReolId.getText().trim();
         String reolType = txfReolType.getText().trim();
+        ArrayList<Hylde> hylder = new ArrayList<>();
+        Lager lager = null;
 
         reol = Controller.createReol(
                 reolId,
                 reolType,
-          //      hylde,
-         //       lager,
-                new ArrayList<>(),
-                null
+                hylder,
+                lager
         );
     }
 
