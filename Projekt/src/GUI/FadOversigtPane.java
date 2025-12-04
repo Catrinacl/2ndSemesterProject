@@ -14,12 +14,14 @@ import java.util.stream.Collectors;
 import static javafx.collections.FXCollections.observableArrayList;
 
 
-public class FadOversigtPane extends GridPane {
+public class FadOversigtPane extends GridPane implements Observer {
 
     private TableView<Fad> tableView;
     private TextField searchBar = new TextField();
 
     public FadOversigtPane() {
+        Controller.addObserver(this);
+
         this.setPadding(new Insets(20));
         this.setHgap(10);
         this.setVgap(15);
@@ -85,5 +87,8 @@ public class FadOversigtPane extends GridPane {
     }
 
 
-
+    @Override
+    public void update() {
+        updateFadOversigt(null);
+    }
 }

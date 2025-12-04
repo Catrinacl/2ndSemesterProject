@@ -12,6 +12,7 @@ import javafx.scene.text.Font;
 
 public class OpretPane extends GridPane {
 
+    Button btnOpretDestillering = new Button("Opret");
     Button btnOpretFad = new Button("Opret");
     Button btnOpretDestillat = new Button("Opret");
     Button btnOpretReol = new Button("Opret");
@@ -30,9 +31,11 @@ public class OpretPane extends GridPane {
         this.add(lblOverskrift, 0, 0);
         lblOverskrift.setFont(new Font(30));
 
+        this.add(new Label("Opret Destillering"), 0, 1);
+        this.add(btnOpretDestillering, 0, 2);
 
-        this.add(new Label("Opret Fad"), 0, 1);
-        this.add(btnOpretFad, 0, 2);
+        this.add(new Label("Opret Fad"), 0, 3);
+        this.add(btnOpretFad, 0, 4);
 
         btnOpretFad.setOnAction(event -> {
             OpretFadWindow opretFadWindow = new OpretFadWindow();
@@ -40,8 +43,8 @@ public class OpretPane extends GridPane {
             tableViewFad.getItems().setAll(Controller.getFade());
         });
 
-        this.add(new Label("Opret Destillat"), 0, 4);
-        this.add(btnOpretDestillat, 0, 5);
+        this.add(new Label("Opret Destillat"), 0, 5);
+        this.add(btnOpretDestillat, 0, 6);
 
         btnOpretDestillat.setOnAction(event -> {
             OpretDestillatWindow opretDestillatWindow = new OpretDestillatWindow();
@@ -49,23 +52,24 @@ public class OpretPane extends GridPane {
             tableViewDestillat.getItems().setAll(Controller.getDestillater());
         });
 
-        this.add(new Label("Opret Lager"), 0, 7);
-        this.add(btnOpretLager, 0, 8);
+        this.add(new Label("Opret Lager"), 1, 1);
+        this.add(btnOpretLager, 1, 2);
 
         btnOpretLager.setOnAction(event -> {
             OpretLagerWindow opretLagerWindow = new OpretLagerWindow();
             opretLagerWindow.showAndWait();
         });
 
-        this.add(new Label("Opret Reol"), 0, 10);
-        this.add(btnOpretReol, 0, 11);
+        this.add(new Label("Opret Reol"), 1, 3);
+        this.add(btnOpretReol, 1, 4);
 
-        /*
+
         btnOpretReol.setOnAction(event -> {
             OpretReolWindow opretReolWindow = new OpretReolWindow();
             opretReolWindow.showAndWait();
         });
-         */
+
+
 
 
 
