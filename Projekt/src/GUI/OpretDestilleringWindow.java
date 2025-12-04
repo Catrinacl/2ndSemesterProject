@@ -1,5 +1,8 @@
 package GUI;
 
+import Controller.Controller;
+import Model.Destillering;
+import Model.Lager;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -37,10 +40,40 @@ public class OpretDestilleringWindow extends Stage {
         pane.setHgap(10);
         pane.setVgap(10);
 
-        Label lblHeader = new Label("Opret Nyt Destillat");
+        Label lblHeader = new Label("Opret Ny Destillering");
         pane.add(lblHeader, 0, 0, 2, 1);
         lblHeader.setFont(new Font(20));
 
+        pane.add(new Label("Destillerings ID:"), 0, 1);
+        pane.add(txfDestilleringsId, 0, 2);
+        pane.add(new Label("Startdato:"), 0, 3);
+        pane.add(txfStartDato, 0, 4);
+        pane.add(new Label("Slutdato:"), 0, 5);
+        pane.add(txfSlutDato, 0, 6);
+        pane.add(new Label("Malt Batch:"), 0, 7);
+        pane.add(txfMaltBatch, 0, 8);
+        pane.add(new Label("Kornsort:"), 0, 9);
+        pane.add(txfKornsort, 0, 10);
+        pane.add(new Label("Rygemateriale:"), 0, 11);
+        pane.add(txfRygemateriale, 0, 12);
+        pane.add(new Label("Evt. kommentar:"), 0, 13);
+        pane.add(txfKommentar, 0, 14);
+        pane.add(btnOpret, 0, 15);
+        btnOpret.setOnAction(event -> this.opretDestilleringAction());
 
+
+    }
+
+    private void opretDestilleringAction() {
+        if (txfDestilleringsId.getText().isEmpty() || txfStartDato.getText().isEmpty() ||
+                txfSlutDato.getText().isEmpty() || txfMaltBatch.getText().isEmpty() ||
+                txfKornsort.getText().isEmpty() || txfRygemateriale.getText().isEmpty()) {
+            System.out.println("Alle felter skal udfyldes!");
+            return;
+        }
+        Destillering destillering = Controller.createDestillering(txfDestilleringsId.getText(),
+                txfStartDato.getText(), txfSlutDato.getText(), txfMaltBatch.getText(),
+                txfKornsort.getText(), txfRygemateriale.getText(), txfKommentar.getText());
+        this.close();
     }
 }
