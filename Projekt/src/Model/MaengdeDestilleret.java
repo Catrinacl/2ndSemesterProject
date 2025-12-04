@@ -3,10 +3,12 @@ package Model;
 public class MaengdeDestilleret {
     private double liter;
     private Destillering destillering;
+    private Destillat destillat;
 
-    public MaengdeDestilleret(double liter, Destillering destillering) {
+    public MaengdeDestilleret(double liter, Destillering destillering, Destillat destillat) {
         this.liter = liter;
         this.destillering = destillering;
+        this.destillat = destillat;
     }
 
     public double getLiter() {
@@ -17,12 +19,16 @@ public class MaengdeDestilleret {
         return destillering;
     }
 
+    public Destillat getDestillat() {
+        return destillat;
+    }
 
     @Override
     public String toString() {
         return "MaengdeDestilleret{" +
                 "liter=" + liter +
                 ", destillering=" + destillering +
+                ", destillat=" + destillat +
                 '}';
     }
 }
