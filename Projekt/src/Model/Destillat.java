@@ -8,7 +8,7 @@ public class Destillat {
     private String newMakeID;
     private double totalmaengeL;
     private double alkoholPc;
-    private ArrayList<MaengdeDestilleret> maengdeDestilleret;
+    private List<MaengdeDestilleret> maengdeDestilleret;
 
     public Destillat(String destilatID, String newMakeID, double totalmaengeL, double alkoholPc) {
         this.destilatID = destilatID;

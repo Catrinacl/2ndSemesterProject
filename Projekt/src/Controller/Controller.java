@@ -85,15 +85,28 @@ public abstract class Controller {
 
     public static Destillat createDestillat(String destilatID,
                                             String newMakeID,
-                                            double totalmaengeL,
                                             double alkoholPc,
-                                            ArrayList<MaengdeDestilleret> maengdeDestillerets) {
+                                            ArrayList<MaengdeDestilleret> maengder) {
+
+        // beregn totalmaengeL ud fra maengde-listen
+        double totalmaengeL = 0;
+        for (MaengdeDestilleret m : maengder) {
+            totalmaengeL += m.getLiter();
+        }
+
         Destillat destillat = new Destillat(destilatID, newMakeID, totalmaengeL, alkoholPc);
+
+        // tilføj alle maengder til destillatet
+        for (MaengdeDestilleret m : maengder) {
+            destillat.addMaengdeDestilleret(m);
+            storage.addMaengdeDestilleret(m);
+        }
 
         storage.addDestillat(destillat);
         notifyObservers();
         return destillat;
     }
+
 
     public static ArrayList<Destillat> getDestillater() {
         return storage.getDestillater();
