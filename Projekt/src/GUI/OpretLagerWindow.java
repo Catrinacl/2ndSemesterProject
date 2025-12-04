@@ -58,7 +58,6 @@ public class OpretLagerWindow extends Stage {
             return;
         }
         Lager lager = Controller.createLager(txfLagerId.getText(), txfLagerType.getText(), txfAddresse.getText());
-
         this.close();
     }
 }
