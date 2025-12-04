@@ -34,12 +34,12 @@ public class Destillat {
         return alkoholPc;
     }
 
-    public String gerMaengder() {
+    public String getMaengder() {
         String result = "";
 
         if (maengdeDestilleret != null) {
             for (MaengdeDestilleret m : maengdeDestilleret) {
-                result += m.getLiter() + " L fra destillering"
+                result += m.getLiter() + " L fra destillering "
                         + m.getDestillering().getDistilleringsID() + "\n";
             }
         }
