@@ -136,7 +136,7 @@ public class OpretDestillatWindow extends Stage {
 
         for (MaengdeDestilleret m : sammensaetning) {
             lvwIndhold.getItems().add(
-                    m.getLiter() + " L fra destillering " + m.getDestillering().getDistilleringsID()
+                    m.getLiter() + " L fra destillering " + m.getDestillering().getDistilleringId()
             );
             total += m.getLiter();
         }

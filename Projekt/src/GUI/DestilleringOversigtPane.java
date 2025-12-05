@@ -16,7 +16,7 @@ public class DestilleringOversigtPane extends GridPane implements Observer{
     private TableView<Destillering> tableView;
     private TextField searchBar = new TextField();
 
-    public void DestilleringOversigtPane() {
+    public DestilleringOversigtPane() {
         Controller.addObserver(this);
 
         this.setPadding(new Insets(20));
@@ -35,7 +35,8 @@ public class DestilleringOversigtPane extends GridPane implements Observer{
         searchBar.textProperty().addListener((obs, oldText, newText)
                 -> updateDestilleringOversigt(newText));
 
-        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, selected)
+        tableView.getSelectionModel().selectedItemProperty().addListener((obs,
+                                                                          oldValue, selected)
                 ->{
             if (selected != null) {
                 new DestilleringDetaljeWindow(selected).show();

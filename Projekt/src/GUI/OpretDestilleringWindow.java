@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 import java.time.LocalDate;
 
 public class OpretDestilleringWindow extends Stage {
-    private TextField txfDestilleringsId = new TextField();
+    private TextField txfDestilleringId = new TextField();
     private TextField txfStartDato = new TextField();
     private TextField txfSlutDato = new TextField();
     private TextField txfMaltBatch = new TextField();
@@ -46,8 +46,8 @@ public class OpretDestilleringWindow extends Stage {
         pane.add(lblHeader, 0, 0, 2, 1);
         lblHeader.setFont(new Font(20));
 
-        pane.add(new Label("Destillerings ID:"), 0, 1);
-        pane.add(txfDestilleringsId, 0, 2);
+        pane.add(new Label("Destillering ID:"), 0, 1);
+        pane.add(txfDestilleringId, 0, 2);
         pane.add(new Label("Startdato:"), 0, 3);
         pane.add(txfStartDato, 0, 4);
         pane.add(new Label("Slutdato:"), 0, 5);
@@ -69,13 +69,13 @@ public class OpretDestilleringWindow extends Stage {
     }
 
     private void opretDestilleringAction() {
-        if (txfDestilleringsId.getText().isEmpty() || txfStartDato.getText().isEmpty() ||
+        if (txfDestilleringId.getText().isEmpty() || txfStartDato.getText().isEmpty() ||
                 txfSlutDato.getText().isEmpty() || txfMaltBatch.getText().isEmpty() ||
                 txfKornsort.getText().isEmpty() || txfRygemateriale.getText().isEmpty()) {
             System.out.println("Alle felter skal udfyldes!");
             return;
         }
-        Destillering destillering = Controller.createDestillering(txfDestilleringsId.getText(),
+        Destillering destillering = Controller.createDestillering(txfDestilleringId.getText(),
                 LocalDate.parse(txfStartDato.getText()), LocalDate.parse(txfSlutDato.getText()), txfMaltBatch.getText(),
                 txfKornsort.getText(), txfRygemateriale.getText(), txfKommentar.getText());
         this.close();

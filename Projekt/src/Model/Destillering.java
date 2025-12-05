@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Destillering {
-    private String distilleringsID;
+    private String distilleringId;
     private LocalDate startDato;
     private LocalDate slutDato;
     private String maltBatch;
@@ -12,8 +12,9 @@ public class Destillering {
     private String rygemateriale; //nullable?
     private String kommentar;
 
-    public Destillering(String distilleringsID, LocalDate startDato, LocalDate slutDato, String maltBatch, String kornsort, String rygemateriale, String kommentar) {
-        this.distilleringsID = distilleringsID;
+    public Destillering(String distilleringId, LocalDate startDato, LocalDate slutDato, String maltBatch,
+                        String kornsort, String rygemateriale, String kommentar) {
+        this.distilleringId = distilleringId;
         this.startDato = startDato;
         this.slutDato = slutDato;
         this.maltBatch = maltBatch;
@@ -22,8 +23,8 @@ public class Destillering {
         this.kommentar = kommentar;
     }
 
-    public String getDistilleringsID() {
-        return distilleringsID;
+    public String getDistilleringId() {
+        return distilleringId;
     }
 
     public LocalDate getStartDato() {
@@ -54,7 +55,7 @@ public class Destillering {
     @Override
     public String toString() {
         return "Destillering{" +
-                "distilleringsID='" + distilleringsID + '\'' +
+                "distilleringId='" + distilleringId + '\'' +
                 ", startDato=" + startDato +
                 ", slutDato=" + slutDato +
                 ", maltBatch='" + maltBatch + '\'' +
