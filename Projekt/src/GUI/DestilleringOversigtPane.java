@@ -12,10 +12,11 @@ import javafx.scene.layout.GridPane;
 
 import java.util.List;
 
-public class DestilleringOversigtPane extends GridPane implements Observer{
+public class DestilleringOversigtPane extends GridPane implements Observer {
     private TableView<Destillering> tableView;
     private TextField searchBar = new TextField();
 
+    // RIGTIG KONSTRUKTOR
     public DestilleringOversigtPane() {
         Controller.addObserver(this);
 
@@ -23,21 +24,20 @@ public class DestilleringOversigtPane extends GridPane implements Observer{
         this.setHgap(10);
         this.setVgap(15);
 
-        //række 0
-        this.add(new Label("Søg efter Destillat Id:"), 0, 0);
+        // række 0
+        this.add(new Label("Søg efter Destillering Id:"), 0, 0);
         this.add(searchBar, 1, 0);
 
-        //række 1
+        // række 1
         this.initContent();
         this.add(tableView, 0, 1, 2, 1);
 
         this.updateDestilleringOversigt(null);
-        searchBar.textProperty().addListener((obs, oldText, newText)
-                -> updateDestilleringOversigt(newText));
 
-        tableView.getSelectionModel().selectedItemProperty().addListener((obs,
-                                                                          oldValue, selected)
-                ->{
+        searchBar.textProperty().addListener((obs, oldText, newText) ->
+                updateDestilleringOversigt(newText));
+
+        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, selected) -> {
             if (selected != null) {
                 new DestilleringDetaljeWindow(selected).show();
             }
@@ -49,25 +49,25 @@ public class DestilleringOversigtPane extends GridPane implements Observer{
 
         // kolonne 1
         TableColumn<Destillering, String> colId = new TableColumn<>("Id");
-        colId.setCellValueFactory(new PropertyValueFactory<>("distilleringsId"));
+        colId.setCellValueFactory(new PropertyValueFactory<>("distilleringsID"));
         colId.setPrefWidth(120);
 
         // kolonne 2
-        TableColumn<Destillering, String> colStart = new TableColumn<>("Startdato");
+        TableColumn<Destillering, java.time.LocalDate> colStart = new TableColumn<>("Startdato");
         colStart.setCellValueFactory(new PropertyValueFactory<>("startDato"));
         colStart.setPrefWidth(120);
 
-        //kolonne 3
-        TableColumn<Destillering, String> colSlut = new TableColumn<>("Slutdato");
+        // kolonne 3
+        TableColumn<Destillering, java.time.LocalDate> colSlut = new TableColumn<>("Slutdato");
         colSlut.setCellValueFactory(new PropertyValueFactory<>("slutDato"));
         colSlut.setPrefWidth(120);
 
-        //kolonne 4
+        // kolonne 4
         TableColumn<Destillering, String> colKorn = new TableColumn<>("Kornsort");
         colKorn.setCellValueFactory(new PropertyValueFactory<>("kornsort"));
         colKorn.setPrefWidth(120);
 
-        //kolonne 5
+        // kolonne 5
         TableColumn<Destillering, String> colBatch = new TableColumn<>("Maltbatch");
         colBatch.setCellValueFactory(new PropertyValueFactory<>("maltBatch"));
         colBatch.setPrefWidth(120);
@@ -79,12 +79,12 @@ public class DestilleringOversigtPane extends GridPane implements Observer{
 
     private void updateDestilleringOversigt(String searchText) {
         List<Destillering> alle = Controller.getDestilleringer();
-
+        // TODO: filtrer og sæt tableView items her
     }
 
     @Override
     public void update() {
         updateDestilleringOversigt(null);
     }
-
 }
+
