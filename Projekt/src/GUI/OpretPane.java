@@ -18,6 +18,7 @@ public class OpretPane extends GridPane {
     Button btnOpretDestillat = new Button("Opret");
     Button btnOpretReol = new Button("Opret");
     Button btnOpretLager = new Button("Opret");
+    Button btnOpretHylde = new Button("Opret");
 
     private TableView<Fad> tableViewFad;
     private TableView<Destillat> tableViewDestillat;
@@ -75,6 +76,13 @@ public class OpretPane extends GridPane {
         btnOpretReol.setOnAction(event -> {
             OpretReolWindow opretReolWindow = new OpretReolWindow();
             opretReolWindow.showAndWait();
+        });
+        this.add(new Label("Opret Hylde"), 1,5);
+        this.add(btnOpretHylde, 1,6);
+
+        btnOpretHylde.setOnAction(event ->{
+            OpretHyldeWindow opretHyldeWindow = new OpretHyldeWindow();
+            opretHyldeWindow.showAndWait();
         });
     }
 }
