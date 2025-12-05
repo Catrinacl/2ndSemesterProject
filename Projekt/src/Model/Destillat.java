@@ -48,7 +48,7 @@ public class Destillat {
         if (maengdeDestilleret != null) {
             for (MaengdeDestilleret m : maengdeDestilleret) {
                 result += m.getLiter() + " L fra destillering "
-                        + m.getDestillering().getDistilleringId() + "\n";
+                        + m.getDestillering().getDestilleringId() + "\n";
             }
         }
         return result;

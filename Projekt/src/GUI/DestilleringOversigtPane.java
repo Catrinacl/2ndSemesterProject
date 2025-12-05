@@ -16,7 +16,7 @@ public class DestilleringOversigtPane extends GridPane implements Observer {
     private TableView<Destillering> tableView;
     private TextField searchBar = new TextField();
 
-    // RIGTIG KONSTRUKTOR
+
     public DestilleringOversigtPane() {
         Controller.addObserver(this);
 
@@ -49,7 +49,7 @@ public class DestilleringOversigtPane extends GridPane implements Observer {
 
         // kolonne 1
         TableColumn<Destillering, String> colId = new TableColumn<>("Id");
-        colId.setCellValueFactory(new PropertyValueFactory<>("distilleringsID"));
+        colId.setCellValueFactory(new PropertyValueFactory<>("DestilleringId"));
         colId.setPrefWidth(120);
 
         // kolonne 2

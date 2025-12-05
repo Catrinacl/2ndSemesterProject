@@ -65,14 +65,14 @@ public abstract class Controller {
     }
 
 
-    public static Destillering createDestillering(String distilleringsID,
+    public static Destillering createDestillering(String destilleringId,
                                            LocalDate startDato,
                                            LocalDate slutDato,
                                            String maltBatch,
                                            String kornsort,
                                            String rygemateriale,
                                            String kommentar) {
-        Destillering d = new Destillering(distilleringsID, startDato, slutDato,
+        Destillering d = new Destillering(destilleringId, startDato, slutDato,
                 maltBatch, kornsort, rygemateriale, kommentar);
         storage.addDestillering(d);
         notifyObservers();
