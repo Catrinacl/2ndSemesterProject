@@ -55,7 +55,7 @@ public class FadOversigtPane extends GridPane implements Observer {
 
         //Kolonne 2
         TableColumn<Fad, String> columnDestillatIndhold = new TableColumn<>("Indhold (Destillat ID)");
-        columnDestillatIndhold.setCellValueFactory(new PropertyValueFactory<>("destilatID"));
+        columnDestillatIndhold.setCellValueFactory(new PropertyValueFactory<>("destillatID"));
         columnDestillatIndhold.setPrefWidth(150);
 
         //Kolonne 3
