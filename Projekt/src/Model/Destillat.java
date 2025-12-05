@@ -4,30 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Destillat {
-    private String destilatID;
+    private String destillatID;
     private String newMakeID;
-    private double totalmaengeL;
+    private double totalmaengdeL;
     private double alkoholPc;
     private List<MaengdeDestilleret> maengdeDestilleret;
 
-    public Destillat(String destilatID, String newMakeID, double totalmaengeL, double alkoholPc) {
-        this.destilatID = destilatID;
+    public Destillat(String destillatID, String newMakeID, double totalmaengdeL, double alkoholPc) {
+        this.destillatID = destillatID;
         this.newMakeID = newMakeID;
-        this.totalmaengeL = totalmaengeL;
+        this.totalmaengdeL = totalmaengdeL;
         this.alkoholPc = alkoholPc;
         this.maengdeDestilleret = new ArrayList<>();
     }
 
-    public String getDestilatID() {
-        return destilatID;
+    public String getDestillatID() {
+        return destillatID;
     }
 
     public String getNewMakeID() {
         return newMakeID;
     }
 
-    public double getTotalmaengeL() {
-        return totalmaengeL;
+    public double getTotalmaengdeL() {
+        return totalmaengdeL;
     }
 
     public double getAlkoholPc() {
@@ -56,7 +56,6 @@ public class Destillat {
 
     @Override
     public String toString() {
-        return destilatID + " - " + newMakeID +
-                " (" + totalmaengeL + " L, " + alkoholPc + "%)";
+        return destillatID + " – Destillat (" + totalmaengdeL + " L, " + alkoholPc + "%)";
     }
 }

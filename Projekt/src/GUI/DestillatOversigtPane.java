@@ -49,7 +49,7 @@ public class DestillatOversigtPane extends GridPane implements Observer {
 
         //Kolonne 1
         TableColumn<Destillat, String> columnDestillatId = new TableColumn<>("Destillat ID");
-        columnDestillatId.setCellValueFactory(new PropertyValueFactory<>("destilatID"));
+        columnDestillatId.setCellValueFactory(new PropertyValueFactory<>("destillatID"));
         columnDestillatId.setPrefWidth(100);
 
         //Kolonne 2
@@ -58,13 +58,13 @@ public class DestillatOversigtPane extends GridPane implements Observer {
         columnNewMakeNr.setPrefWidth(150);
 
         //Kolonne 3
-        TableColumn<Destillat, Integer> columnMængde = new TableColumn<>("Total Mængde(Liter)");
-        columnMængde.setCellValueFactory(new PropertyValueFactory<>("totalmaengeL"));
-        columnMængde.setPrefWidth(150);
+        TableColumn<Destillat, Integer> columnMaengde = new TableColumn<>("Total Mængde (Liter)");
+        columnMaengde.setCellValueFactory(new PropertyValueFactory<>("totalmaengdeL"));
+        columnMaengde.setPrefWidth(150);
 
         tableView.getColumns().add(columnDestillatId);
         tableView.getColumns().add(columnNewMakeNr);
-        tableView.getColumns().add(columnMængde);
+        tableView.getColumns().add(columnMaengde);
 
         tableView.setMaxHeight(Double.MAX_VALUE);
         tableView.setMaxWidth(Double.MAX_VALUE);
@@ -76,7 +76,8 @@ public class DestillatOversigtPane extends GridPane implements Observer {
         final String filterText = (searchText != null ? searchText : searchBar.getText()).trim().toLowerCase();
 
         List<Destillat> filteredList = alleDestillater.stream()
-                .filter(destillat -> filterText.isEmpty() || destillat.getDestilatID().toLowerCase().contains(filterText))
+                .filter(destillat -> filterText.isEmpty()
+                        || destillat.getDestillatID().toLowerCase().contains(filterText))
                 .collect(Collectors.toList());
 
         tableView.setItems(observableArrayList(filteredList));
