@@ -40,7 +40,7 @@ public class Paafyldning {
 
     @Override
     public String toString() {
-        return maengdeL + " L - " + dato + " (" + alkoholPcVedPaafyldning + "%, udført af "
-                + udfoertAf.getAntalPaafyldninger() + ")";
+        return paafyldningsId + " - " + dato + " - " + maengdeL + " L (" + alkoholPcVedPaafyldning + "%), udført af "
+                + udfoertAf.getAntalPaafyldninger();
     }
 }
