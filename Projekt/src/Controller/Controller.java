@@ -64,6 +64,16 @@ public abstract class Controller {
         return storage.getFade();
     }
 
+    public static ArrayList<Fad> findFadeKlarTilAftapning() {
+        ArrayList<Fad> result = new ArrayList<>();
+        for (Fad f : storage.getFade()) {
+            if (f.erKlarTilAftapning()) {
+                result.add(f);
+            }
+        }
+        return result;
+    }
+
 
     public static Destillering createDestillering(String destilleringId,
                                            LocalDate startDato,

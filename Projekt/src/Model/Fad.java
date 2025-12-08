@@ -1,5 +1,6 @@
 package Model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Fad {
@@ -54,6 +55,25 @@ public class Fad {
         paafyldninger.add(p);
     }
 
+    public boolean erKlarTilAftapning() {
+        if (paafyldninger == null || paafyldninger.isEmpty()) {
+            return false;
+        }
+
+        //finder den tidligste dato
+        LocalDate earliest = paafyldninger.get(0).getDato();
+        for (Paafyldning p : paafyldninger) {
+            if (p.getDato().isBefore(earliest)) {
+                earliest = p.getDato();
+            }
+        }
+
+        // beregner datoen hvor fader er 3år gammel
+        LocalDate treAarDato = earliest.plusYears(3);
+
+        //klar til aftapning hvis treAarDato er før || samme dag som i dag
+        return !treAarDato.isAfter(LocalDate.now());
+    }
 
     @Override
     public String toString() {
