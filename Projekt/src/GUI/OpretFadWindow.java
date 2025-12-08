@@ -85,7 +85,6 @@ public class OpretFadWindow extends Stage {
             return;
         }
 
-        // Hylde håndterer vi ikke her endnu → send null
         Fad fad = Controller.createFad(
                 fadId,
                 stoerrelseL,
