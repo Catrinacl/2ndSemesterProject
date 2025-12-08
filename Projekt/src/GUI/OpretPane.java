@@ -19,6 +19,10 @@ public class OpretPane extends GridPane {
     Button btnOpretReol = new Button("Opret");
     Button btnOpretLager = new Button("Opret");
     Button btnOpretHylde = new Button("Opret");
+    Button btnOpretWhiskyProdukt = new Button("Opret");
+    Button btnOpretAftapning = new Button("Opret");
+
+
 
     private TableView<Fad> tableViewFad;
     private TableView<Destillat> tableViewDestillat;
@@ -83,6 +87,22 @@ public class OpretPane extends GridPane {
         btnOpretHylde.setOnAction(event ->{
             OpretHyldeWindow opretHyldeWindow = new OpretHyldeWindow();
             opretHyldeWindow.showAndWait();
+        });
+
+        this.add(new Label("Opret Whisky Produkt"),0,7);
+        this.add(btnOpretWhiskyProdukt,0 ,8 );
+
+            btnOpretWhiskyProdukt.setOnAction(event -> {
+            OpretWhiskyProduktWindow opretWhiskyProduktWindow = new OpretWhiskyProduktWindow();
+            opretWhiskyProduktWindow.showAndWait();
+        });
+
+        this.add(new Label("Opret Aftapning"),1,7);
+        this.add(btnOpretAftapning,1,8);
+
+            btnOpretAftapning.setOnAction(event ->{
+            OpretAftapningWindow opretAftapningWindow = new OpretAftapningWindow();
+            opretAftapningWindow.showAndWait();
         });
     }
 }

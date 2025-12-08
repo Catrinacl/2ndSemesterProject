@@ -145,16 +145,29 @@ public abstract class Controller {
     }
 
     public static Aftapning createAftapning(String aftapningsNr,
-                                     double alkoholProcent,
-                                     LocalDate dato,
-                                     double volumenILiter,
-                                     Destillat destillat,
-                                     WhiskyProdukt whiskyProdukt) {
-        Aftapning a = new Aftapning(aftapningsNr, alkoholProcent, dato, volumenILiter, destillat, whiskyProdukt);
+                                            double alkoholProcent,
+                                            LocalDate dato,
+                                            double volumenILiter,
+                                            Destillat destillat,
+                                            WhiskyProdukt whiskyProdukt) {
+
+        Aftapning a = new Aftapning(
+                aftapningsNr,
+                alkoholProcent,
+                dato,
+                volumenILiter,
+                destillat,
+                whiskyProdukt
+        );
+
+        // dobbeltrettet kobling: produktet skal kende sine aftapninger
+        whiskyProdukt.addAftapning(a);
         storage.addAftapning(a);
         notifyObservers();
         return a;
     }
+
+
 
     public static ArrayList<Aftapning> getAftapninger() {
         return storage.getAftapninger();

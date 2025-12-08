@@ -46,11 +46,7 @@ public class Aftapning {
 
     @Override
     public String toString() {
-        return "Aftapning: " + "aftapningsNr= " + aftapningsNr + '\'' + ", alkoholProcent= " + alkoholProcent +
-                ", dato= " + dato +
-                ", volumenILiter= " + volumenILiter +
-                ", destillat= " + destillat +
-                ", whiskyProdukt= " + whiskyProdukt
-                ;
+        return aftapningsNr + " - " + dato + " - " + volumenILiter + " L";
     }
+
 }

@@ -57,17 +57,16 @@ public class WhiskyProdukt {
         return aftapninger;
     }
 
-    @Override
-    public String toString() {
-        return "Model.WhiskyProdukt{" +
-                "produktNr='" + produktNr + '\'' +
-                ", navn='" + navn + '\'' +
-                ", beskrivelse='" + beskrivelse + '\'' +
-                ", slutAlkoholProcent=" + slutAlkoholProcent +
-                ", erSingleCask=" + erSingleCask +
-                ", antalFlasker=" + antalFlasker +
-                ", vandTilsaetning=" + vandTilsaetning +
-                ", aftapninger=" + aftapninger +
-                '}';
+    public void addAftapning(Aftapning a) {
+        aftapninger.add(a);
     }
+
+    
+
+    @Override
+
+    public String toString() {
+        return produktNr + " - " + navn;
+    }
+
 }
