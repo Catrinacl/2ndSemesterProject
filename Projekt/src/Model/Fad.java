@@ -14,7 +14,7 @@ public class Fad {
     private Hylde hylde;
 
     public Fad(String fadId, double stoerrelseL, String traeType, String tidligereIndhold,
-               String status, List<Paafyldning> paafyldninger, Hylde hylde) {
+               String status, Hylde hylde) {
         this.fadId = fadId;
         this.stoerrelseL = stoerrelseL;
         this.traeType = traeType;

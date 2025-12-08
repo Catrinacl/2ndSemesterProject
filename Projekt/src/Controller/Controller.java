@@ -53,8 +53,8 @@ public abstract class Controller {
     }
 
     public static Fad createFad(String fadId, double stoerrelseL, String traeType, String tidligereIndhold,
-                         String status, ArrayList<Paafyldning> paafyldninger, Hylde hylde) {
-        Fad fad = new Fad(fadId, stoerrelseL, traeType, tidligereIndhold, status, paafyldninger, hylde);
+                         String status, Hylde hylde) {
+        Fad fad = new Fad(fadId, stoerrelseL, traeType, tidligereIndhold, status, hylde);
         storage.addFad(fad);
         notifyObservers();
         return fad;
@@ -213,9 +213,9 @@ public abstract class Controller {
                                          double maengdeL,
                                          double alkoholPcVedPaafyldning,
                                          LocalDate dato,
-                                         LagerMedarbejder udfoertAf, Destillat destillat) {
+                                         LagerMedarbejder udfoertAf, Fad fad, Destillat destillat) {
         Paafyldning p = new Paafyldning(paafyldningsId, maengdeL,
-                alkoholPcVedPaafyldning, dato, udfoertAf, destillat);
+                alkoholPcVedPaafyldning, dato, udfoertAf, fad, destillat);
         storage.addPaafyldning(p);
         notifyObservers();
         return p;

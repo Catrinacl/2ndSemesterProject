@@ -72,35 +72,7 @@ public class App {
                 maengder2
         );
 
-        // 4) Nogle påfyldninger (Paafyldning) til senere fade
-        Paafyldning p1 = Controller.createPaafyldning(
-                "Første fyldning",
-                100.0,
-                63.5,
-                LocalDate.of(2021, 6, 1),
-                m1,
-                dest1
-        );
-
-        Paafyldning p2 = Controller.createPaafyldning(
-                "Anden fyldning",
-                80.0,
-                63.5,
-                LocalDate.of(2021, 8, 15),
-                m2,
-                dest2
-        );
-
-        Paafyldning p3 = Controller.createPaafyldning(
-                "Single cask fyldning",
-                120.0,
-                68.0,
-                LocalDate.of(2022, 2, 10),
-                m1,
-                dest1
-        );
-
-        // 5) Lager / reoler / hylder
+        // 4) Lager / reoler / hylder
         Lager lager1 = Controller.createLager(
                 "LAG01",
                 "Hovedlager",
@@ -148,23 +120,14 @@ public class App {
                 reol2
         );
 
-        // 6) Fade med lister af påfyldninger + placering på hylder
-        ArrayList<Paafyldning> paafyldningerFad1 = new ArrayList<>();
-        paafyldningerFad1.add(p1);
-        paafyldningerFad1.add(p2);
-
         Fad fad1 = Controller.createFad(
                 "FAD001",
                 200.0,
                 "Ex-Bourbon",
                 "Bourbon",
                 "Fyldt",
-                paafyldningerFad1,
                 hylde1
         );
-
-        ArrayList<Paafyldning> paafyldningerFad2 = new ArrayList<>();
-        paafyldningerFad2.add(p3);
 
         Fad fad2 = Controller.createFad(
                 "FAD002",
@@ -172,8 +135,38 @@ public class App {
                 "Sherry",
                 "Oloroso Sherry",
                 "Fyldt",
-                paafyldningerFad2,
                 hylde2
+        );
+
+        // 4) Nogle påfyldninger (Paafyldning) til senere fade
+        Paafyldning p1 = Controller.createPaafyldning(
+                "Første fyldning",
+                100.0,
+                63.5,
+                LocalDate.of(2021, 6, 1),
+                m1,
+                fad1,
+                dest1
+        );
+
+        Paafyldning p2 = Controller.createPaafyldning(
+                "Anden fyldning",
+                80.0,
+                63.5,
+                LocalDate.of(2021, 8, 15),
+                m2,
+                fad2,
+                dest2
+        );
+
+        Paafyldning p3 = Controller.createPaafyldning(
+                "Single cask fyldning",
+                120.0,
+                68.0,
+                LocalDate.of(2022, 2, 10),
+                m1,
+                fad1,
+                dest1
         );
 
         // 7) Whiskyprodukt + aftapninger
