@@ -2,6 +2,7 @@ package GUI;
 
 import Controller.Controller;
 import Model.Destillat;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -9,6 +10,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import static javafx.collections.FXCollections.observableArrayList;
@@ -71,20 +74,44 @@ public class DestillatOversigtPane extends GridPane implements Observer {
     }
 
     public void updateDestillatOversigt(String searchText) {
+
+        // Hent alle destillater
         List<Destillat> alleDestillater = Controller.getDestillater();
 
-        final String filterText = (searchText != null ? searchText : searchBar.getText()).trim().toLowerCase();
+        // Bestem søgetekst: brug parameter hvis den findes, ellers brug søgefeltet
+        String filterText;
+        if (searchText != null) {
+            filterText = searchText.toLowerCase().trim();
+        } else {
+            filterText = searchBar.getText().toLowerCase().trim();
+        }
 
-        List<Destillat> filteredList = alleDestillater.stream()
-                .filter(destillat -> filterText.isEmpty()
-                        || destillat.getDestillatID().toLowerCase().contains(filterText))
-                .collect(Collectors.toList());
+        // Liste til resultater
+        List<Destillat> filteredList = new ArrayList<>();
 
-        tableView.setItems(observableArrayList(filteredList));
+        // Hvis der ikke søges på noget, vis alle destillater
+        if (filterText.isEmpty()) {
+            filteredList.addAll(alleDestillater);
+        } else {
+            // For-loop som filtrerer destillater efter ID
+            for (Destillat destillat : alleDestillater) {
+
+                String destillatId = destillat.getDestillatID().toLowerCase();
+
+                if (destillatId.contains(filterText)) {
+                    filteredList.add(destillat);
+                }
+            }
+        }
+
+        // Opdater TableView
+        tableView.setItems(FXCollections.observableArrayList(filteredList));
     }
+
 
     @Override
     public void update() {
         updateDestillatOversigt(null);
     }
 }
+

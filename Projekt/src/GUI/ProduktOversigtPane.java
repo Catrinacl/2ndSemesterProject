@@ -2,10 +2,13 @@ package GUI;
 
 import Controller.Controller;
 import Model.WhiskyProdukt;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -113,22 +116,45 @@ public class ProduktOversigtPane extends GridPane implements Observer {
     }
 
     public void updateProduktOversigt(String searchText) {
+
+        // Hent alle whiskyprodukter
         List<WhiskyProdukt> alleProdukter = Controller.getWhiskyProdukter();
 
-        final String filterText = (searchText != null ? searchText : txfsearchBar.getText()).toLowerCase();
+        // Bestem søgetekst: brug parameter hvis den findes, ellers brug søgefeltet
+        String filterText;
+        if (searchText != null) {
+            filterText = searchText.toLowerCase();
+        } else {
+            filterText = txfsearchBar.getText().toLowerCase();
+        }
 
+        // Liste til resultater
+        List<WhiskyProdukt> filteredList = new ArrayList<>();
 
-        List<WhiskyProdukt> filteredList = alleProdukter.stream()
-                .filter(whiskyProdukt ->
-                        filterText.isEmpty() ||
-                                whiskyProdukt.getProduktNr().toLowerCase().contains(filterText) ||
-                                whiskyProdukt.getNavn().toLowerCase().contains(filterText) ||
-                                String.valueOf(whiskyProdukt.getSlutAlkoholProcent()).contains(filterText))
-                .collect(Collectors.toList());
+        // Hvis der ikke søges på noget, vis alle produkter
+        if (filterText.isEmpty()) {
+            filteredList.addAll(alleProdukter);
+        } else {
+            // For-loop der filtrerer efter produktNr, navn eller alkoholprocent
+            for (WhiskyProdukt produkt : alleProdukter) {
 
-        tableView.setItems(observableArrayList(filteredList));
+                String produktNr = produkt.getProduktNr().toLowerCase();
+                String navn = produkt.getNavn().toLowerCase();
+                String alkohol = String.valueOf(produkt.getSlutAlkoholProcent());
 
+                if (produktNr.contains(filterText) ||
+                        navn.contains(filterText) ||
+                        alkohol.contains(filterText)) {
+
+                    filteredList.add(produkt);
+                }
+            }
+        }
+
+        // Opdater TableView med resultatet
+        tableView.setItems(FXCollections.observableArrayList(filteredList));
     }
+
 
     private void redigerProduktAction() {
         WhiskyProdukt selectedProdukt = tableView.getSelectionModel().getSelectedItem();
