@@ -15,7 +15,9 @@ import static javafx.collections.FXCollections.observableArrayList;
 public class FadOversigtPane extends GridPane implements Observer {
 
     private TableView<Fad> tableView;
-    private TextField searchBar = new TextField();
+    private final TextField txfsearchBar = new TextField();
+
+    private final Button btnSletFad = new Button("Slet Valgt Fad");
     private final Button btnRedigerFad = new Button("Rediger Fad");
     private final Button btnVisDetaljer = new Button("Vis detaljer");
 
@@ -27,11 +29,9 @@ public class FadOversigtPane extends GridPane implements Observer {
         this.setHgap(10);
         this.setVgap(15);
 
-        //række 0
-        this.add(new Label("Søg efter Fad ID:"), 0, 0);
-        this.add(searchBar, 1, 0);
+        this.add(new Label("Søg efter fad:"), 0, 0);
+        this.add(txfsearchBar, 1, 0);
 
-        //række 1
         this.initContent();
         this.add(tableView, 0, 1, 2, 1);
 
@@ -40,7 +40,7 @@ public class FadOversigtPane extends GridPane implements Observer {
 
 
         this.updateFadOversigt(null);
-        searchBar.textProperty().addListener((obs, oldText, newText) -> updateFadOversigt(newText));
+        txfsearchBar.textProperty().addListener((obs, oldText, newText) -> updateFadOversigt(newText));
 
         this.add(btnVisDetaljer, 2, 2);
         btnVisDetaljer.setOnAction(event -> {
@@ -87,7 +87,6 @@ public class FadOversigtPane extends GridPane implements Observer {
         tableView.setMaxHeight(Double.MAX_VALUE);
         tableView.setMaxWidth(Double.MAX_VALUE);
 
-        Button btnSletFad = new Button("Slet Valgt Fad");
         this.add(btnSletFad, 1, 2);
 
         btnSletFad.setOnAction(event -> {
@@ -98,7 +97,7 @@ public class FadOversigtPane extends GridPane implements Observer {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Intet fad valgt");
                 alert.setHeaderText(null);
-                alert.setContentText("Vælg et fad i oversigten for at se detaljerne");
+                alert.setContentText("Vælg et fad i oversigten for at slette");
                 alert.showAndWait();
             }
 
@@ -109,7 +108,7 @@ public class FadOversigtPane extends GridPane implements Observer {
     public void updateFadOversigt(String searchText) {
         List<Fad> alleFade = Controller.getFade();
 
-        final String filterText = (searchText != null ? searchText : searchBar.getText()).toLowerCase();
+        final String filterText = (searchText != null ? searchText : txfsearchBar.getText()).toLowerCase();
 
         List<Fad> filteredList = alleFade.stream()
                 .filter(fad -> filterText.isEmpty() ||

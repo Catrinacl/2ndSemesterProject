@@ -234,6 +234,11 @@ public abstract class Controller {
         notifyObservers();
     }
 
+    public static void deleteProdukt(WhiskyProdukt whiskyProdukt) {
+        storage.deleteProdukt(whiskyProdukt);
+        notifyObservers();
+    }
+
     // UPDATE
     public static Fad updateFad(Fad fad, double stoerrelseL, String traeType, String tidligereIndhold, String status) {
         fad.setStoerrelseL(stoerrelseL);
@@ -242,6 +247,15 @@ public abstract class Controller {
         fad.setStatus(status);
         notifyObservers();
         return fad;
+    }
+
+    public static WhiskyProdukt updateWhiskyProdukt(WhiskyProdukt whiskyProdukt, String navn, String beskrivelse, double slutAlkoholProcent, int antalFlasker) {
+        whiskyProdukt.setNavn(navn);
+        whiskyProdukt.setBeskrivelse(beskrivelse);
+        whiskyProdukt.setSlutAlkoholProcent(slutAlkoholProcent);
+        whiskyProdukt.setAntalFlasker(antalFlasker);
+        notifyObservers();
+        return whiskyProdukt;
     }
 
 

@@ -45,4 +45,6 @@ public interface Storage {
     void addLagerMedarbejder(LagerMedarbejder m);
 
     void deleteFad(Fad fad);
+
+    void deleteProdukt(WhiskyProdukt whiskyProdukt);
 }

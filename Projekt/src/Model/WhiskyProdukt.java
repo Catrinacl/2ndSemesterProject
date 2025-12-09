@@ -57,6 +57,26 @@ public class WhiskyProdukt {
         return aftapninger;
     }
 
+    public void setNavn(String navn) {
+        this.navn = navn;
+    }
+
+    public void setBeskrivelse(String beskrivelse) {
+        this.beskrivelse = beskrivelse;
+    }
+
+    public void setSlutAlkoholProcent(double slutAlkoholProcent) {
+        this.slutAlkoholProcent = slutAlkoholProcent;
+    }
+
+    public void setAntalFlasker(int antalFlasker) {
+        this.antalFlasker = antalFlasker;
+    }
+
+    public void setErSingleCask(boolean erSingleCask) {
+        this.erSingleCask = erSingleCask;
+    }
+
     public void addAftapning(Aftapning a) {
         aftapninger.add(a);
     }

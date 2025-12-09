@@ -120,4 +120,9 @@ public class ListStorage implements Storage {
     public void deleteFad(Fad fad) {
         fade.remove(fad);
     }
+
+    @Override
+    public void deleteProdukt(WhiskyProdukt whiskyProdukt) {
+        whiskyProdukter.remove(whiskyProdukt);
+    }
 }
