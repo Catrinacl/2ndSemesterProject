@@ -2,15 +2,12 @@ package GUI;
 
 import Controller.Controller;
 import Model.Fad;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import static javafx.collections.FXCollections.observableArrayList;
 
 
