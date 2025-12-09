@@ -30,7 +30,7 @@ public class DestilleringOversigtPane extends GridPane implements Observer {
         this.setVgap(15);
 
         // række 0
-        this.add(new Label("Søg efter Destillering Id:"), 0, 0);
+        this.add(new Label("Søg efter Destillering ID:"), 0, 0);
         this.add(searchBar, 1, 0);
 
         // række 1
