@@ -37,7 +37,7 @@ public class ProduktHistorikWindow extends Stage implements Observer {
         pane.add(new Label("Antal flasker lavet: " + whiskyProdukt.getAntalFlasker()), 0, 6);
 
         String vandTilsætningText = (whiskyProdukt.getVandTilsaetning() != null)
-                ? "Tilsat: " + whiskyProdukt.getVandTilsaetning().getVandMaengde() + " L - " + whiskyProdukt.getVandTilsaetning().getVandKilde()
+                ? "Tilsat: " + whiskyProdukt.getVandTilsaetning().getVandMaengdeL() + " L - " + whiskyProdukt.getVandTilsaetning().getVandKilde()
                 : "Ingen vandtilsætning";
         pane.add(new Label("Vandtilsætning:"), 1, 1);
         pane.add(new Label(vandTilsætningText), 1, 2);

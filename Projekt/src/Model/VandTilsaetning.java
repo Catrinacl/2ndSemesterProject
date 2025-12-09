@@ -1,25 +1,25 @@
 package Model;
 
 public class VandTilsaetning {
-    private String vandTilsaetning;
-    private double vandMaengde;
+    private String vandTilsaetningId;
+    private double vandMaengdeL;
     private String vandKilde;
     private WhiskyProdukt whiskyProdukt;
 
-    public VandTilsaetning(String vandTilsaetning, double vandMaengde,
+    public VandTilsaetning(String vandTilsaetningId, double vandMaengdeL,
                            String vandKilde, WhiskyProdukt whiskyProdukt) {
-        this.vandTilsaetning = vandTilsaetning;
-        this.vandMaengde = vandMaengde;
+        this.vandTilsaetningId = vandTilsaetningId;
+        this.vandMaengdeL = vandMaengdeL;
         this.vandKilde = vandKilde;
         this.whiskyProdukt = whiskyProdukt;
     }
 
-    public String getVandTilsaetning() {
-        return vandTilsaetning;
+    public String getVandTilsaetningId() {
+        return vandTilsaetningId;
     }
 
-    public double getVandMaengde() {
-        return vandMaengde;
+    public double getVandMaengdeL() {
+        return vandMaengdeL;
     }
 
     public String getVandKilde() {
@@ -34,7 +34,7 @@ public class VandTilsaetning {
     public String toString() {
         String produktId = (whiskyProdukt != null ? whiskyProdukt.getProduktNr() : "ukendt produkt");
 
-        return vandTilsaetning + " - " + vandKilde +
-                " (" + vandMaengde + " L, " + produktId + ")";
+        return vandTilsaetningId + " - " + vandKilde +
+                " (" + vandMaengdeL + " L, " + produktId + ")";
     }
 }
