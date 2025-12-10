@@ -47,6 +47,32 @@ class FadTest {
         );
     }
 
+    // opfylder su kravet om 1 formel unittest af det hele i en modelklasse
+    @Test
+    void testFadSomHelhed() {
+        Fad fad = opretStandardFad("F1");
+
+        assertEquals("F1", fad.getFadId());
+        assertEquals(200.0, fad.getStoerrelseL());
+        assertEquals("Oak", fad.getTraeType());
+        assertFalse(fad.erKlarTilAftapning()); // assertFalse fordi det er boolean
+        assertEquals("", fad.getDestillatID());
+        assertEquals(0, fad.getPaafyldninger().size());
+
+        Paafyldning p = opretPaafyldning(fad, LocalDate.now().minusYears(4), "D1");
+        fad.addPaafyldning(p);
+
+        assertEquals(1, fad.getPaafyldninger().size());
+        assertTrue(fad.erKlarTilAftapning());
+        assertEquals("Ja", fad.getKlarTilAftapningTekst());
+        assertEquals("D1", fad.getDestillatID());
+
+        String txt = fad.toString();
+        assertTrue(txt.contains("F1"));
+        assertTrue(txt.contains("1 påfyldninger"));
+        assertTrue(txt.contains("H1"));
+    }
+
     // følger arrange / act / assert logikken
     @Test
     void getKlarTilAftapningTekst() {
@@ -73,7 +99,7 @@ class FadTest {
 
         String tekst1 = fadMedHylde.toString();
         assertTrue(tekst1.contains("H1"));
-        assertTrue(tekst1.contains("2 påfyldnnger"));
+        assertTrue(tekst1.contains("2 påfyldninger"));
 
         Fad fadUdenHylde = new Fad(
                 "F3",
@@ -85,8 +111,8 @@ class FadTest {
         );
 
         String tekst2 = fadUdenHylde.toString();
-        assertTrue(tekst2.contains("ingen hyde"));
-        assertTrue(tekst2.contains("0 påfyldniner"));
+        assertTrue(tekst2.contains("ingen hylde"));
+        assertTrue(tekst2.contains("0 påfyldninger"));
     }
 
     @Test
