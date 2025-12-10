@@ -47,7 +47,6 @@ class FadTest {
         );
     }
 
-    // opfylder su kravet om 1 formel unittest af det hele i en modelklasse
     @Test
     void testFadSomHelhed() {
         Fad fad = opretStandardFad("F1");
@@ -55,7 +54,7 @@ class FadTest {
         assertEquals("F1", fad.getFadId());
         assertEquals(200.0, fad.getStoerrelseL());
         assertEquals("Oak", fad.getTraeType());
-        assertFalse(fad.erKlarTilAftapning()); // assertFalse fordi det er boolean
+        assertFalse(fad.erKlarTilAftapning());
         assertEquals("", fad.getDestillatID());
         assertEquals(0, fad.getPaafyldninger().size());
 
