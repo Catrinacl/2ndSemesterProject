@@ -54,6 +54,10 @@ public class WhiskyProdukt implements Serializable {
         return vandTilsaetning;
     }
 
+    public void setVandTilsaetning(VandTilsaetning vandTilsaetning) {
+        this.vandTilsaetning = vandTilsaetning;
+    }
+
     public List<Aftapning> getAftapninger() {
         return aftapninger;
     }

@@ -57,7 +57,7 @@ public class OpretDestillatWindow extends Stage {
         pane.add(lblDestillering, 0, 1);
         pane.add(lvwDestillering, 0, 2);
         lvwDestillering.setPrefHeight(80);
-        lvwDestillering.setPrefWidth(75);
+        lvwDestillering.setPrefWidth(250);
         lvwDestillering.getItems().setAll(Controller.getDestilleringer());
         lvwDestillering.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
@@ -81,7 +81,7 @@ public class OpretDestillatWindow extends Stage {
         pane.add(lblIndhold, 0, 9);
         pane.add(lvwIndhold, 0, 10);
         lvwIndhold.setPrefHeight(80);
-        lvwIndhold.setPrefWidth(75);
+        lvwIndhold.setPrefWidth(250);
         lvwIndhold.setDisable(true);
 
         txfTotalMængde.setEditable(false);
@@ -100,7 +100,7 @@ public class OpretDestillatWindow extends Stage {
     private void tilfoejDestilleringAction() {
         Destillering valgt = lvwDestillering.getSelectionModel().getSelectedItem();
         if (valgt == null) {
-            showAlert("Fejl", "Du skal vælge en destillering.");
+            showAlert("Du skal vælge en destillering.");
             return;
         }
 
@@ -108,11 +108,11 @@ public class OpretDestillatWindow extends Stage {
         try {
             liter = Double.parseDouble(txfMængde.getText());
             if (liter <= 0) {
-                showAlert("Fejl", "Mængden skal være større end 0.");
+                showAlert("Mængden skal være større end 0.");
                 return;
             }
         } catch (NumberFormatException e) {
-            showAlert("Fejl", "Mængde skal være et tal.");
+            showAlert("Mængde skal være et tal.");
             return;
         }
 
@@ -147,7 +147,7 @@ public class OpretDestillatWindow extends Stage {
 
     private void opretDestillatAction() {
         if (sammensaetning.isEmpty()) {
-            showAlert("Fejl", "Du skal tilføje mindst én destillering til destillatet.");
+            showAlert("Du skal tilføje mindst én destillering til destillatet.");
             return;
         }
 
@@ -156,7 +156,7 @@ public class OpretDestillatWindow extends Stage {
         String alkoholText = txfAlkoholPc.getText().trim();
 
         if (destillatId.isEmpty() || newMakeId.isEmpty() || alkoholText.isEmpty()) {
-            showAlert("Fejl", "Udfyld Destillat ID, New Make Nr og Alkohol %.");
+            showAlert("Udfyld Destillat ID, New Make Nr og Alkohol %.");
             return;
         }
 
@@ -164,7 +164,7 @@ public class OpretDestillatWindow extends Stage {
         try {
             alkoholPct = Double.parseDouble(alkoholText);
         } catch (NumberFormatException e) {
-            showAlert("Fejl", "Alkohol % skal være et tal.");
+            showAlert("Alkohol % skal være et tal.");
             return;
         }
 
@@ -179,9 +179,9 @@ public class OpretDestillatWindow extends Stage {
         this.close();
     }
 
-    private void showAlert(String title, String msg) {
+    private void showAlert(String msg) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
+        alert.setTitle("Fejl");
         alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();

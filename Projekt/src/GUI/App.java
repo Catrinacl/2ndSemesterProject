@@ -96,14 +96,12 @@ public class App {
         Reol reol1 = Controller.createReol(
                 "R1",
                 "Standard",
-                new ArrayList<>(),   // tom liste af hylder til at starte med
                 lager1
         );
 
         Reol reol2 = Controller.createReol(
                 "R2",
                 "Kølig",
-                new ArrayList<>(),
                 lager1
         );
 

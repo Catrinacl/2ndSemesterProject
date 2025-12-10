@@ -12,7 +12,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class OpretVandtilsaetningWindow extends Stage {
-    private VandTilsaetning vandTilsaetning;
 
     private TextField txfVandtilsaetningID = new TextField();
     private TextField txfVandMaengdeL = new TextField();
@@ -84,12 +83,16 @@ public class OpretVandtilsaetningWindow extends Stage {
             return;
         }
 
-        vandTilsaetning = Controller.createVandTilsaetning(
+        VandTilsaetning vandTilsaetning = Controller.createVandTilsaetning(
                 vandTilsætningID,
                 vandMaengdeL,
                 vandKilde,
                 valgtProdukt
         );
+
+        valgtProdukt.setVandTilsaetning(vandTilsaetning);
+
+        Controller.notifyObservers();
 
         this.close();
     }

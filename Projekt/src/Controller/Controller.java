@@ -33,8 +33,8 @@ public abstract class Controller {
         return storage.getLagre();
     }
 
-    public static Reol createReol(String reolId, String reolType, ArrayList<Hylde> hylder, Lager lager) {
-        Reol reol = new Reol(reolId, reolType, hylder, lager);
+    public static Reol createReol(String reolId, String reolType, Lager lager) {
+        Reol reol = new Reol(reolId, reolType, lager);
         storage.addReol(reol);
         notifyObservers();
         return reol;
@@ -271,7 +271,7 @@ public abstract class Controller {
         observers.add(observer);
     }
 
-    private static void notifyObservers() {
+    public static void notifyObservers() {
         for (Observer observer : observers) {
             observer.update();
         }

@@ -50,7 +50,7 @@ public class OpretWhiskyProduktWindow extends Stage {
         txfAntalFlasker = new TextField();
         cbSingleCask = new CheckBox("Single Cask");
 
-        pane.add(new Label("Produkt nr:"), 0, 1);
+        pane.add(new Label("Produkt ID:"), 0, 1);
         pane.add(txfProduktNr, 1, 1);
 
         pane.add(new Label("Navn:"), 0, 2);

@@ -1,6 +1,7 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Reol implements Serializable {
@@ -9,10 +10,10 @@ public class Reol implements Serializable {
     private List<Hylde> hylder;
     private Lager lager;
 
-    public Reol(String reolId, String reolType, List<Hylde> hylder, Lager lager) {
+    public Reol(String reolId, String reolType, Lager lager) {
         this.reolId = reolId;
         this.reolType = reolType;
-        this.hylder = hylder;
+        this.hylder = new ArrayList<>();
         this.lager = lager;
     }
 
