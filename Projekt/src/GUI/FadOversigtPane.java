@@ -166,6 +166,7 @@ public class FadOversigtPane extends GridPane implements Observer {
     public void update() {
         if (tableView != null) {
             updateFadOversigt(null);
+            tableView.refresh();
         }
     }
 }

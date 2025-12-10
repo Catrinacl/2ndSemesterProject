@@ -53,7 +53,7 @@ public class DestilleringOversigtPane extends GridPane implements Observer {
         tableView = new TableView<>();
 
         // kolonne 1
-        TableColumn<Destillering, String> colId = new TableColumn<>("Id");
+        TableColumn<Destillering, String> colId = new TableColumn<>("Destillerings ID");
         colId.setCellValueFactory(new PropertyValueFactory<>("destilleringId"));
         colId.setPrefWidth(120);
 

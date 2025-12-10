@@ -23,6 +23,11 @@ public abstract class Controller {
 
 
     public static Lager createLager(String lagerId, String lagerType, String adresse) {
+        for (Lager eksisterendeLager : storage.getLagre()) {
+            if (eksisterendeLager.getLagerId().equalsIgnoreCase(lagerId)) {
+                throw new IllegalArgumentException("Lager ID'et '" + lagerId + "' eksisterer allerede.");
+            }
+        }
         Lager lager = new Lager(lagerId, lagerType, adresse);
         storage.addLager(lager);
         notifyObservers();
@@ -34,6 +39,11 @@ public abstract class Controller {
     }
 
     public static Reol createReol(String reolId, String reolType, Lager lager) {
+        for (Reol eksisterendeReol : storage.getReoler()) {
+            if (eksisterendeReol.getReolId().equalsIgnoreCase(reolId)) {
+                throw new IllegalArgumentException("Reol ID'et '" + reolId + "' eksisterer allerede.");
+            }
+        }
         Reol reol = new Reol(reolId, reolType, lager);
         storage.addReol(reol);
         notifyObservers();
@@ -46,6 +56,11 @@ public abstract class Controller {
 
     public static Hylde createHylde(String hyldeId, int kapacitet, String placering, String hyldeType,
                              ArrayList<Fad> fade, Reol reol) {
+        for (Hylde eksisterendeHylde : storage.getHylder()) {
+            if (eksisterendeHylde.getHyldeId().equalsIgnoreCase(hyldeId)) {
+                throw new IllegalArgumentException("Hylde ID'et '" + hyldeId + "' eksisterer allerede.");
+            }
+        }
         Hylde hylde = new Hylde(hyldeId, kapacitet, placering, hyldeType, fade, reol);
         storage.addHylde(hylde);
         notifyObservers();
@@ -58,6 +73,11 @@ public abstract class Controller {
 
     public static Fad createFad(String fadId, double stoerrelseL, String traeType, String tidligereIndhold,
                          String status, Hylde hylde) {
+        for (Fad eksisterendeFad : storage.getFade()) {
+            if (eksisterendeFad.getFadId().equalsIgnoreCase(fadId)) {
+                throw new IllegalArgumentException("Fad ID'et '" + fadId + "' eksisterer allerede.");
+            }
+        }
         Fad fad = new Fad(fadId, stoerrelseL, traeType, tidligereIndhold, status, hylde);
         storage.addFad(fad);
         notifyObservers();
@@ -86,6 +106,11 @@ public abstract class Controller {
                                            String kornsort,
                                            String rygemateriale,
                                            String kommentar) {
+        for (Destillering eksisterendeDestillering : storage.getDestilleringer()) {
+            if (eksisterendeDestillering.getDestilleringId().equalsIgnoreCase(destilleringId)) {
+                throw new IllegalArgumentException("Destillerings ID'et '" + destilleringId + "' eksisterer allerede.");
+            }
+        }
         Destillering d = new Destillering(destilleringId, startDato, slutDato,
                 maltBatch, kornsort, rygemateriale, kommentar);
         storage.addDestillering(d);
@@ -101,8 +126,11 @@ public abstract class Controller {
                                             String newMakeID,
                                             double alkoholPc,
                                             ArrayList<MaengdeDestilleret> maengder) {
-
-
+        for (Destillat eksisterendeDestillat : storage.getDestillater()) {
+            if (eksisterendeDestillat.getDestillatID().equalsIgnoreCase(destillatID)) {
+                throw new IllegalArgumentException("Destillat ID'et '" + destillatID + "' eksisterer allerede.");
+            }
+        }
         double totalmaengdeL = 0;
         for (MaengdeDestilleret m : maengder) {
             totalmaengdeL += m.getLiter();
@@ -110,10 +138,8 @@ public abstract class Controller {
 
         Destillat destillat = new Destillat(destillatID, newMakeID, totalmaengdeL, alkoholPc);
 
-        // tilføj alle maengder til destillatet
         for (MaengdeDestilleret m : maengder) {
             destillat.addMaengdeDestilleret(m);
-            storage.addMaengdeDestilleret(m);
         }
 
         storage.addDestillat(destillat);
@@ -146,6 +172,11 @@ public abstract class Controller {
                                              boolean erSingleCask,
                                              int antalFlasker,
                                              VandTilsaetning vandTilsaetning) {
+        for (WhiskyProdukt eksisterendeProdukt : storage.getWhiskyProdukter()) {
+            if (eksisterendeProdukt.getProduktNr().equalsIgnoreCase(produktNr)) {
+                throw new IllegalArgumentException("Produkt ID'et '" + produktNr + "' eksisterer allerede.");
+            }
+        }
         WhiskyProdukt wp = new WhiskyProdukt(produktNr, navn, beskrivelse,
                 slutAlkoholProcent, erSingleCask,
                 antalFlasker, vandTilsaetning);
@@ -164,6 +195,11 @@ public abstract class Controller {
                                             double volumenILiter,
                                             Destillat destillat,
                                             WhiskyProdukt whiskyProdukt) {
+        for (Aftapning eksisterendeAftapninger : storage.getAftapninger()) {
+            if (eksisterendeAftapninger.getAftapningsNr().equalsIgnoreCase(aftapningsNr)) {
+                throw new IllegalArgumentException("Aftapnings ID'et '" + aftapningsNr + "' eksisterer allerede.");
+            }
+        }
 
         Aftapning a = new Aftapning(
                 aftapningsNr,
@@ -174,7 +210,6 @@ public abstract class Controller {
                 whiskyProdukt
         );
 
-        // dobbeltrettet kobling: produktet skal kende sine aftapninger
         whiskyProdukt.addAftapning(a);
         storage.addAftapning(a);
         notifyObservers();
@@ -191,6 +226,11 @@ public abstract class Controller {
                                                  double vandMaengde,
                                                  String vandKilde,
                                                  WhiskyProdukt whiskyProdukt) {
+        for (VandTilsaetning eksisterendeTilsaetning : storage.getVandTilsaetninger()) {
+            if (eksisterendeTilsaetning.getVandTilsaetningId().equalsIgnoreCase(vandTilsaetning)) {
+                throw new IllegalArgumentException("Vandtilsætnings ID'et '" + vandTilsaetning + "' eksisterer allerede.");
+            }
+        }
         VandTilsaetning v = new VandTilsaetning(vandTilsaetning, vandMaengde, vandKilde, whiskyProdukt);
         storage.addVandTilsaetning(v);
         notifyObservers();
@@ -203,6 +243,11 @@ public abstract class Controller {
 
 
     public static LagerMedarbejder createLagerMedarbejder(String medarbejderNr, String navn) {
+        for (LagerMedarbejder eksisterendeMedarbejder : storage.getLagerMedarbejdere()) {
+            if (eksisterendeMedarbejder.getMedarbejderNr().equalsIgnoreCase(medarbejderNr)) {
+                throw new IllegalArgumentException("Medarbejder ID'et '" + medarbejderNr + "' eksisterer allerede.");
+            }
+        }
         LagerMedarbejder m = new LagerMedarbejder(medarbejderNr, navn);
         storage.addLagerMedarbejder(m);
         notifyObservers();
@@ -218,6 +263,11 @@ public abstract class Controller {
                                          double alkoholPcVedPaafyldning,
                                          LocalDate dato,
                                          LagerMedarbejder udfoertAf, Fad fad, Destillat destillat) {
+        for (Paafyldning eksisterendePaafyldning : storage.getPaafyldninger()) {
+            if (eksisterendePaafyldning.getPaafyldningsId().equalsIgnoreCase(paafyldningsId)) {
+                throw new IllegalArgumentException("Påfyldning ID'et '" + paafyldningsId + "' eksisterer allerede.");
+            }
+        }
         Paafyldning p = new Paafyldning(paafyldningsId, maengdeL,
                 alkoholPcVedPaafyldning, dato, udfoertAf, fad, destillat);
         storage.addPaafyldning(p);
