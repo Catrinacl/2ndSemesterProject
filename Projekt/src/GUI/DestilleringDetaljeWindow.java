@@ -15,20 +15,19 @@ public class DestilleringDetaljeWindow extends Stage {
         pane.setPadding(new Insets(20));
         pane.setVgap(10);
 
-        //row 0
         pane.add(new Label("Destillering id: " + destillering.getDestilleringId()), 0, 0);
-        //1
+
         pane.add(new Label("Startdato: " + destillering.getStartDato()), 0, 1);
-        //2
+
         pane.add(new Label("Slutdato: " + destillering.getSlutDato()), 0, 2);
-        //3
+
         pane.add(new Label("Maltbatch: " + destillering.getMaltBatch()), 0, 3);
-        //4
+
         pane.add(new Label("Kornsort: " + destillering.getKornsort()), 0, 4);
-        //5
+
         String rygeTxt = (destillering.getRygemateriale() != null ? destillering.getRygemateriale() : "Ingen");
         pane.add(new Label("Rygemateriale: " + rygeTxt), 0, 5);
-        //6
+
         String kommentarTxt = (destillering.getKommentar() != null ? destillering.getKommentar() : "");
         pane.add(new Label("Kommentar: " + kommentarTxt), 0, 6);
 

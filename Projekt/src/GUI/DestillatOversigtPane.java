@@ -10,10 +10,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 import static javafx.collections.FXCollections.observableArrayList;
 
 public class DestillatOversigtPane extends GridPane implements Observer {
@@ -75,10 +74,8 @@ public class DestillatOversigtPane extends GridPane implements Observer {
 
     public void updateDestillatOversigt(String searchText) {
 
-        // Hent alle destillater
         List<Destillat> alleDestillater = Controller.getDestillater();
 
-        // Bestem søgetekst: brug parameter hvis den findes, ellers brug søgefeltet
         String filterText;
         if (searchText != null) {
             filterText = searchText.toLowerCase().trim();
@@ -86,14 +83,11 @@ public class DestillatOversigtPane extends GridPane implements Observer {
             filterText = searchBar.getText().toLowerCase().trim();
         }
 
-        // Liste til resultater
         List<Destillat> filteredList = new ArrayList<>();
 
-        // Hvis der ikke søges på noget, vis alle destillater
         if (filterText.isEmpty()) {
             filteredList.addAll(alleDestillater);
         } else {
-            // For-loop som filtrerer destillater efter ID
             for (Destillat destillat : alleDestillater) {
 
                 String destillatId = destillat.getDestillatID().toLowerCase();
@@ -104,8 +98,7 @@ public class DestillatOversigtPane extends GridPane implements Observer {
             }
         }
 
-        // Opdater TableView
-        tableView.setItems(FXCollections.observableArrayList(filteredList));
+        tableView.setItems(observableArrayList(filteredList));
     }
 
 

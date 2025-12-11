@@ -12,13 +12,10 @@ import java.util.ArrayList;
 public class App {
 
     public static void main(String[] args) {
-        // initialiser storage
         Storage storage = new ListStorage();
 
-        // giv den til controllerlaget
         Controller.setStorage(storage);
 
-        // test data
         initStorage();
 
         String fileName = "Projekt\\src\\Model\\Storage.ser";
@@ -39,11 +36,9 @@ public class App {
     }
 
     private static void initStorage() {
-        // 1) Lager-medarbejder (bruges til påfyldninger)
         LagerMedarbejder m1 = Controller.createLagerMedarbejder("LM001", "Hans Hansen");
         LagerMedarbejder m2 = Controller.createLagerMedarbejder("LM002", "Lise Larsen");
 
-        // 2) Nogle destilleringer
         Destillering d1 = Controller.createDestillering(
                 "D001",
                 LocalDate.of(2020, 3, 1),
@@ -64,7 +59,6 @@ public class App {
                 "Uryget batch"
         );
 
-        // 3) Sammensætning til et destillat (MaengdeDestilleret)
         ArrayList<MaengdeDestilleret> maengder1 = new ArrayList<>();
         maengder1.add(new MaengdeDestilleret(200.0, d1));
         maengder1.add(new MaengdeDestilleret(150.0, d2));
@@ -86,7 +80,6 @@ public class App {
                 maengder2
         );
 
-        // 4) Lager / reoler / hylder
         Lager lager1 = Controller.createLager(
                 "LAG01",
                 "Hovedlager",
@@ -110,7 +103,7 @@ public class App {
                 10,
                 "R1-1",
                 "Standard",
-                new ArrayList<>(),   // fade sættes på om lidt
+                new ArrayList<>(),
                 reol1
         );
 
@@ -150,7 +143,6 @@ public class App {
                 hylde2
         );
 
-        // 4) Nogle påfyldninger (Paafyldning) til senere fade
         Paafyldning p1 = Controller.createPaafyldning(
                 "Første fyldning",
                 100.0,
@@ -181,7 +173,6 @@ public class App {
                 dest1
         );
 
-        // 7) Whiskyprodukt + aftapninger
         WhiskyProdukt wp1 = Controller.createWhiskyProdukt(
                 "WP001",
                 "Single Malt 10Y",
@@ -189,7 +180,7 @@ public class App {
                 46.0,
                 false,
                 500,
-                null  // ingen vandtilsætning endnu
+                null
         );
 
         Aftapning a1 = Controller.createAftapning(
