@@ -11,7 +11,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.time.LocalDate;
 
 public class OpretAftapningWindow extends Stage {
@@ -53,21 +52,18 @@ public class OpretAftapningWindow extends Stage {
         txfVolumenL = new TextField();
         dpDato = new DatePicker(LocalDate.now());
 
-        // vælg destillat
         pane.add(new Label("Vælg destillat:"), 0, 1);
         lvwDestillater.setPrefHeight(100);
         lvwDestillater.setPrefWidth(250);
         lvwDestillater.getItems().setAll(Controller.getDestillater());
         pane.add(lvwDestillater, 0, 2, 2, 1);
 
-        // vælg whiskyprodukt
         pane.add(new Label("Vælg whiskyprodukt:"), 0, 3);
         lvwProdukter.setPrefHeight(100);
         lvwProdukter.setPrefWidth(250);
         lvwProdukter.getItems().setAll(Controller.getWhiskyProdukter());
         pane.add(lvwProdukter, 0, 4, 2, 1);
 
-        // felter til aftapning
         pane.add(new Label("Aftapnings nr:"), 0, 5);
         pane.add(txfAftapningsNr, 1, 5);
 
@@ -80,7 +76,6 @@ public class OpretAftapningWindow extends Stage {
         pane.add(new Label("Dato:"), 0, 8);
         pane.add(dpDato, 1, 8);
 
-        // opret-knap
         pane.add(btnOpret, 0, 10);
         btnOpret.setOnAction(event -> opretAftapningAction());
     }
@@ -95,12 +90,12 @@ public class OpretAftapningWindow extends Stage {
         LocalDate dato = dpDato.getValue();
 
         if (valgtDestillat == null || valgtProdukt == null) {
-            showAlert("Fejl", "Vælg både destillat og whiskyprodukt.");
+            showAlert("Vælg både destillat og whiskyprodukt.");
             return;
         }
 
         if (aftapningsNr.isEmpty() || alkoholText.isEmpty() || volumenText.isEmpty() || dato == null) {
-            showAlert("Fejl", "Udfyld alle felter for aftapningen.");
+            showAlert("Udfyld alle felter for aftapningen.");
             return;
         }
 
@@ -110,7 +105,7 @@ public class OpretAftapningWindow extends Stage {
             alkoholProcent = Double.parseDouble(alkoholText);
             volumenL = Double.parseDouble(volumenText);
         } catch (NumberFormatException e) {
-            showAlert("Fejl", "Alkohol % og volumen skal være tal.");
+            showAlert("Alkohol % og volumen skal være tal.");
             return;
         }
 
@@ -126,9 +121,9 @@ public class OpretAftapningWindow extends Stage {
         this.close();
     }
 
-    private void showAlert(String title, String msg) {
+    private void showAlert(String msg) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
+        alert.setTitle("Fejl");
         alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();

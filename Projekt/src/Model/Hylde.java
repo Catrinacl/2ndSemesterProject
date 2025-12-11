@@ -25,18 +25,6 @@ public class Hylde implements Serializable {
         return hyldeId;
     }
 
-    public int getKapacitet() {
-        return kapacitet;
-    }
-
-    public String getPlacering() {
-        return placering;
-    }
-
-    public String getHyldeType() {
-        return hyldeType;
-    }
-
     public List<Fad> getFade() {
         return fade;
     }
@@ -51,6 +39,6 @@ public class Hylde implements Serializable {
         String reolNavn = (reol != null ? reol.getReolId() : "ingen reol");
 
         return hyldeId + " - " + hyldeType +
-                " (" + antalFade + "/" + kapacitet + " fade, " + reolNavn + ")";
+                " (" + antalFade + "/" + kapacitet + " fade, placering: " + placering + ", reolnavn: " + reolNavn + ")";
     }
 }

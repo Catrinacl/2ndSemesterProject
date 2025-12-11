@@ -28,10 +28,6 @@ public class OpretPaafyldningWindow extends Stage {
     private final ComboBox<LagerMedarbejder> cbbMedarbejder = new ComboBox<>();
     private Button btnOpret = new Button("Opret Påfyldning");
 
-
-
-
-
     public OpretPaafyldningWindow() {
         this.initModality(Modality.APPLICATION_MODAL);
         this.setTitle("Opret Påfyldning");
@@ -48,7 +44,6 @@ public class OpretPaafyldningWindow extends Stage {
         pane.setHgap(10);
         pane.setVgap(10);
 
-        // Overskrift
         Label lblHeader = new Label("Opret Ny Påfyldning");
         lblHeader.setFont(new Font(20));
         pane.add(lblHeader, 0, 0, 2, 1);
@@ -85,17 +80,15 @@ public class OpretPaafyldningWindow extends Stage {
 
         pane.add(btnOpret, 0, 12);
         btnOpret.setOnAction(event -> opretPaafyldningAction());
-
     }
 
     private void opretPaafyldningAction() {
-
         String paafyldningsId = txfPaafyldningsId.getText().trim();
         String maengdeLText = txfMaengdeL.getText().trim();
         String alkoholPcVedPaafyldning = txfalkoholPcVedPaafyldning.getText().trim();
 
         if (paafyldningsId.isEmpty() || maengdeLText.isEmpty() || alkoholPcVedPaafyldning.isEmpty()) {
-            showAlert("Fejl", "Udfyld påfyldningsID, Mængde og Alkohol %");
+            showAlert("Udfyld påfyldningsID, Mængde og Alkohol %");
             return;
         }
 
@@ -105,11 +98,11 @@ public class OpretPaafyldningWindow extends Stage {
             maengdeL = Double.parseDouble(maengdeLText);
             alkoholPct = Double.parseDouble(alkoholPcVedPaafyldning);
             if (maengdeL <= 0 || alkoholPct < 0 || alkoholPct > 100) {
-                showAlert("Fejl", "Mængde skal være >0 og Alkohol % mellem 0 og 100");
+                showAlert("Mængde skal være >0 og Alkohol % mellem 0 og 100");
                 return;
             }
         } catch (NumberFormatException e) {
-            showAlert("Fejl", "Mængde(L) og Alkohol % skal være tal");
+            showAlert("Mængde(L) og Alkohol % skal være tal");
             return;
         }
 
@@ -119,7 +112,7 @@ public class OpretPaafyldningWindow extends Stage {
         LocalDate dato = dpDato.getValue();
 
         if (selectedFad == null || selectedDestillat == null || selectedMedarbejder == null) {
-            showAlert("Fejl", "Vælg Fad, Destillat og Medarbejder");
+            showAlert("Vælg Fad, Destillat og Medarbejder");
             return;
         }
 
@@ -134,12 +127,11 @@ public class OpretPaafyldningWindow extends Stage {
         );
 
         this.close();
-
     }
 
-    private void showAlert(String title, String msg) {
+    private void showAlert(String msg) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
+        alert.setTitle("Fejl");
         alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();

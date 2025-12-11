@@ -17,7 +17,7 @@ public class OpretLagerWindow extends Stage {
 
     private TextField txfLagerId = new TextField();
     private TextField txfLagerType = new TextField();
-    private TextField txfAddresse = new TextField();
+    private TextField txfAdresse = new TextField();
     private Button btnOpretLager = new Button("Opret Lager");
 
 
@@ -46,7 +46,7 @@ public class OpretLagerWindow extends Stage {
         pane.add(new Label("Lager Type:"), 0, 3);
         pane.add(txfLagerType, 0, 4);
         pane.add(new Label("Adresse:"), 0, 5);
-        pane.add(txfAddresse, 0, 6);
+        pane.add(txfAdresse, 0, 6);
         pane.add(btnOpretLager, 0, 7);
         btnOpretLager.setOnAction(event -> this.opretLagerAction());
 
@@ -54,19 +54,19 @@ public class OpretLagerWindow extends Stage {
     }
 
     private void opretLagerAction() {
-        if (txfLagerId.getText().isEmpty() || txfLagerType.getText().isEmpty() || txfAddresse.getText().isEmpty()) {
-            showAlert("Felterne lager ID, type og adresse skal udfyldes");
+        if (txfLagerId.getText().isEmpty() || txfLagerType.getText().isEmpty() || txfAdresse.getText().isEmpty()) {
+            showAlert();
             return;
         }
-        Lager lager = Controller.createLager(txfLagerId.getText(), txfLagerType.getText(), txfAddresse.getText());
+        Lager lager = Controller.createLager(txfLagerId.getText(), txfLagerType.getText(), txfAdresse.getText());
         this.close();
     }
 
-    private void showAlert(String msg) {
+    private void showAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Fejl");
         alert.setHeaderText(null);
-        alert.setContentText(msg);
+        alert.setContentText("Felterne lager ID, type og adresse skal udfyldes");
         alert.showAndWait();
     }
 }

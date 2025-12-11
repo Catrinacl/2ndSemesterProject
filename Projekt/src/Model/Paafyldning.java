@@ -31,10 +31,6 @@ public class Paafyldning implements Serializable {
         return maengdeL;
     }
 
-    public double getAlkoholPcVedPaafyldning() {
-        return alkoholPcVedPaafyldning;
-    }
-
     public LocalDate getDato() {
         return dato;
     }
@@ -45,6 +41,10 @@ public class Paafyldning implements Serializable {
 
     public Destillat getDestillat() {
         return destillat;
+    }
+
+    public Fad getFad() {
+        return fad;
     }
 
     @Override

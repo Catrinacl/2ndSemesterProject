@@ -21,14 +21,6 @@ public class Lager implements Serializable {
         return lagerId;
     }
 
-    public String getLagerType() {
-        return lagerType;
-    }
-
-    public String getAdresse() {
-        return adresse;
-    }
-
     public List<Reol> getReoler() {
         return reoler;
     }
@@ -37,11 +29,10 @@ public class Lager implements Serializable {
         this.reoler.add(reol);
     }
 
-
     @Override
     public String toString() {
         int antalReoler = (reoler != null ? reoler.size() : 0);
-        return lagerId + " - " + lagerType +
+        return lagerId + " - " + lagerType + " - " + adresse +
                 " (" + antalReoler + " reoler) ";
     }
 }

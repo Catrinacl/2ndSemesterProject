@@ -12,7 +12,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class OpretVandtilsaetningWindow extends Stage {
-
     private TextField txfVandtilsaetningID = new TextField();
     private TextField txfVandMaengdeL = new TextField();
     private TextField txfVandkilde = new TextField();
@@ -66,12 +65,12 @@ public class OpretVandtilsaetningWindow extends Stage {
         String vandKilde = txfVandkilde.getText().trim();
 
         if (valgtProdukt == null) {
-            showAlert("Fejl", "Vælg et whiskyprodukt");
+            showAlert("Vælg et whiskyprodukt");
             return;
         }
 
         if (vandTilsætningID.isEmpty() || vandMaengde.isEmpty() || vandKilde.isEmpty()) {
-            showAlert("Fejl", "Udfyld alle felter");
+            showAlert("Udfyld alle felter");
             return;
         }
 
@@ -79,7 +78,7 @@ public class OpretVandtilsaetningWindow extends Stage {
         try {
             vandMaengdeL = Double.parseDouble(vandMaengde);
         } catch (NumberFormatException e) {
-            showAlert("Fejl", "Vandmængde skal være tal.");
+            showAlert("Vandmængde skal være tal.");
             return;
         }
 
@@ -91,15 +90,13 @@ public class OpretVandtilsaetningWindow extends Stage {
         );
 
         valgtProdukt.setVandTilsaetning(vandTilsaetning);
-
         Controller.notifyObservers();
-
         this.close();
     }
 
-    private void showAlert(String title, String msg) {
+    private void showAlert(String msg) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
+        alert.setTitle("Fejl");
         alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();

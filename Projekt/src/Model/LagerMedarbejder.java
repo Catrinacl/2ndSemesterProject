@@ -41,7 +41,6 @@ public class LagerMedarbejder implements Serializable {
         return navn;
     }
 
-    // antal paafyldninger udført
     public int getAntalPaafyldninger() {
         return paafyldninger.size();
     }

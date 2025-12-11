@@ -43,7 +43,6 @@ public class RedigerProduktWindow extends Stage {
         lblHeader.setFont(new Font(20));
 
         pane.add(new Label("Navn:"), 0, 1);
-        // Sæt eksisterende værdi
         txfNavn.setText(String.valueOf(whiskyProdukt.getNavn()));
         pane.add(txfNavn, 1, 1);
 
@@ -79,7 +78,7 @@ public class RedigerProduktWindow extends Stage {
         boolean singleCask = cbSingleCask.isSelected();
 
         if (navn.isEmpty() || alkoPct.isEmpty() || antalFlasker.isEmpty()) {
-            showAlert("Fejl", "Udfyld Navn, Slut alkohol % og Antal flasker.");
+            showAlert("Udfyld Navn, Slut alkohol % og Antal flasker.");
             return;
         }
 
@@ -87,7 +86,6 @@ public class RedigerProduktWindow extends Stage {
             double alkohol = Double.parseDouble(alkoPct);
             int antal = Integer.parseInt(antalFlasker);
 
-            // Her gemmer man de nye ændringer
             whiskyProdukt.setNavn(navn);
             whiskyProdukt.setBeskrivelse(beskrivelse);
             whiskyProdukt.setSlutAlkoholProcent(alkohol);
@@ -97,14 +95,13 @@ public class RedigerProduktWindow extends Stage {
             this.close();
 
         } catch (NumberFormatException e) {
-            showAlert("Fejl", "Slut alkohol % skal være et tal og antal flasker skal være et helt tal");
+            showAlert("Slut alkohol % skal være et tal og antal flasker skal være et helt tal");
         }
-
     }
 
-    private void showAlert(String title, String msg) {
+    private void showAlert(String msg) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
+        alert.setTitle("Fejl");
         alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();

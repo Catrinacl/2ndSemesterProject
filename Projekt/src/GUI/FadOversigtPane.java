@@ -8,7 +8,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-
 import java.util.ArrayList;
 import java.util.List;
 import static javafx.collections.FXCollections.observableArrayList;
@@ -18,10 +17,6 @@ public class FadOversigtPane extends GridPane implements Observer {
 
     private TableView<Fad> tableView;
     private final TextField txfsearchBar = new TextField();
-
-    private final Button btnSletFad = new Button("Slet Valgt Fad");
-    private final Button btnRedigerFad = new Button("Rediger Fad");
-    private final Button btnVisDetaljer = new Button("Vis detaljer");
 
 
     public FadOversigtPane() {
@@ -38,6 +33,9 @@ public class FadOversigtPane extends GridPane implements Observer {
         this.add(tableView, 0, 1, 2, 1);
 
         HBox buttonBox = new HBox(15);
+        Button btnSletFad = new Button("Slet Valgt Fad");
+        Button btnRedigerFad = new Button("Rediger Fad");
+        Button btnVisDetaljer = new Button("Vis detaljer");
         buttonBox.getChildren().addAll(btnRedigerFad, btnSletFad, btnVisDetaljer);
         buttonBox.setPadding(new Insets(10, 0, 0, 0));
         buttonBox.setAlignment(Pos.CENTER_LEFT);
@@ -72,6 +70,7 @@ public class FadOversigtPane extends GridPane implements Observer {
         columnStørrelse.setCellValueFactory(new PropertyValueFactory<>("stoerrelseL"));
         columnStørrelse.setPrefWidth(100);
 
+        //Kolonne 4
         TableColumn<Fad, Boolean> columnModen = new TableColumn<>("Klar til aftapning");
         columnModen.setCellValueFactory(new PropertyValueFactory<>("klarTilAftapningTekst"));
         columnModen.setPrefWidth(100);

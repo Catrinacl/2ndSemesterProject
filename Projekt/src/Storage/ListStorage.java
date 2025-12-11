@@ -2,7 +2,6 @@ package Storage;
 
 import Controller.Storage;
 import Model.*;
-
 import java.io.*;
 import java.util.ArrayList;
 
@@ -154,6 +153,4 @@ public class ListStorage implements Storage, Serializable {
             throw new RuntimeException();
         }
     }
-
-
 }

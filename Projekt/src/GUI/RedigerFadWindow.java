@@ -14,7 +14,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class RedigerFadWindow extends Stage {
-
     private final Fad fad;
 
     private final TextField txfStoerrelseL = new TextField();
@@ -48,7 +47,6 @@ public class RedigerFadWindow extends Stage {
         lblHeader.setFont(new Font(20));
 
         pane.add(new Label("Størrelse (Liter):"), 0, 1);
-        // Sæt eksisterende værdi
         txfStoerrelseL.setText(String.valueOf(fad.getStoerrelseL()));
         pane.add(txfStoerrelseL, 1, 1);
 
@@ -78,7 +76,7 @@ public class RedigerFadWindow extends Stage {
         String status = txfStatus.getText().trim();
 
         if (stoerrelseText.isEmpty() || traeType.isEmpty() || status.isEmpty()) {
-            showAlert("Fejl", "Udfyld Størrelse, Trætype og Status.");
+            showAlert("Udfyld Størrelse, Trætype og Status.");
             return;
         }
 
@@ -86,18 +84,17 @@ public class RedigerFadWindow extends Stage {
         try {
             stoerrelseL = Double.parseDouble(stoerrelseText);
         } catch (NumberFormatException e) {
-            showAlert("Fejl", "Størrelse (Liter) skal være et gyldigt tal");
+            showAlert("Størrelse (Liter) skal være et gyldigt tal");
             return;
         }
 
         Controller.updateFad(fad, stoerrelseL, traeType, tidligereIndhold, status);
-
         this.close();
     }
 
-    private void showAlert(String title, String msg) {
+    private void showAlert(String msg) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
+        alert.setTitle("Fejl");
         alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();

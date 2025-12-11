@@ -11,7 +11,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 
 public class OpretDestillatWindow extends Stage {
@@ -28,7 +27,6 @@ public class OpretDestillatWindow extends Stage {
     private final Button btnTilfoej = new Button("Tilføj destillering");
     private final Button btnOpret = new Button("Opret Destillat");
 
-    // lokal liste: hvad destillatet skal bestå af
     private final ArrayList<MaengdeDestilleret> sammensaetning = new ArrayList<>();
 
     public OpretDestillatWindow() {
@@ -47,12 +45,10 @@ public class OpretDestillatWindow extends Stage {
         pane.setHgap(10);
         pane.setVgap(10);
 
-        // Overskrift
         Label lblHeader = new Label("Opret Nyt Destillat");
         lblHeader.setFont(new Font(20));
         pane.add(lblHeader, 0, 0, 2, 1);
 
-        // Vælg destillering + mængde
         Label lblDestillering = new Label("Vælg destillering(er):");
         pane.add(lblDestillering, 0, 1);
         pane.add(lvwDestillering, 0, 2);
@@ -67,7 +63,6 @@ public class OpretDestillatWindow extends Stage {
         pane.add(btnTilfoej, 1, 3);
         btnTilfoej.setOnAction(event -> tilfoejDestilleringAction());
 
-        // Felter til destillat-info
         pane.add(new Label("Destillat ID:"), 0, 5);
         pane.add(new Label("New Make Nr:"), 0, 6);
         pane.add(new Label("Alkohol %:"), 0, 7);
@@ -76,7 +71,6 @@ public class OpretDestillatWindow extends Stage {
         pane.add(txfNewMakeId, 1, 6);
         pane.add(txfAlkoholPc, 1, 7);
 
-        // Valgt indhold + total mængde
         Label lblIndhold = new Label("Valgt indhold:");
         pane.add(lblIndhold, 0, 9);
         pane.add(lvwIndhold, 0, 10);
@@ -89,14 +83,10 @@ public class OpretDestillatWindow extends Stage {
         pane.add(txfTotalMængde, 1, 10);
         pane.add(new Label("Liter"), 2, 10);
 
-        // Opret-knap
         pane.add(btnOpret, 0, 12);
         btnOpret.setOnAction(event -> opretDestillatAction());
     }
 
-    /**
-     * Tilføj én destillering + mængde til den lokale sammensætning.
-     */
     private void tilfoejDestilleringAction() {
         Destillering valgt = lvwDestillering.getSelectionModel().getSelectedItem();
         if (valgt == null) {
@@ -116,20 +106,14 @@ public class OpretDestillatWindow extends Stage {
             return;
         }
 
-        // Lav MaengdeDestilleret-objekt og lig i lokal liste
         MaengdeDestilleret m = new MaengdeDestilleret(liter, valgt);
         sammensaetning.add(m);
 
-        // Opdater visning og total
         opdaterIndholdOgTotal();
 
-        // Ryd mængdefeltet til næste gang
         txfMængde.clear();
     }
 
-    /**
-     * Opdaterer lvwIndhold og totalmængde-feltet ud fra sammensætning-listen.
-     */
     private void opdaterIndholdOgTotal() {
         lvwIndhold.getItems().clear();
         double total = 0;
@@ -168,7 +152,6 @@ public class OpretDestillatWindow extends Stage {
             return;
         }
 
-        // Her bruger vi hele sammensætning-listen til at oprette destillatet via controlleren
         Destillat destillat = Controller.createDestillat(
                 destillatId,
                 newMakeId,

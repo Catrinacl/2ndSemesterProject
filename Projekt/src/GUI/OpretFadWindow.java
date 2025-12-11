@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 
 public class OpretFadWindow extends Stage {
 
-    // Fad-felter
     private final TextField txfFadNr = new TextField();
     private final TextField txfStoerrelseL = new TextField();
     private final TextField txfTraeType = new TextField();
@@ -37,12 +36,10 @@ public class OpretFadWindow extends Stage {
         pane.setHgap(10);
         pane.setVgap(10);
 
-        // Overskrift
         Label lblHeader = new Label("Opret Nyt Fad");
         lblHeader.setFont(new Font(20));
         pane.add(lblHeader, 0, 0, 2, 1);
 
-        // Fad-data
         pane.add(new Label("Fad Nr:"), 0, 1);
         pane.add(txfFadNr, 1, 1);
 
@@ -58,7 +55,6 @@ public class OpretFadWindow extends Stage {
         pane.add(new Label("Status:"), 0, 5);
         pane.add(txfStatus, 1, 5);
 
-        // Opret-knap
         pane.add(btnOpret, 0, 6);
         btnOpret.setOnAction(event -> opretFadAction());
     }
@@ -73,7 +69,7 @@ public class OpretFadWindow extends Stage {
         String status = txfStatus.getText().trim();
 
         if (fadId.isEmpty() || stoerrelseText.isEmpty() || traeType.isEmpty()) {
-            showAlert("Fejl", "Udfyld som minimum Fad Nr, Størrelse og Trætype.");
+            showAlert("Udfyld som minimum Fad Nr, Størrelse og Trætype.");
             return;
         }
 
@@ -81,7 +77,7 @@ public class OpretFadWindow extends Stage {
         try {
             stoerrelseL = Double.parseDouble(stoerrelseText);
         } catch (NumberFormatException e) {
-            showAlert("Fejl", "Størrelse (L) skal være et tal.");
+            showAlert("Størrelse (L) skal være et tal.");
             return;
         }
 
@@ -91,15 +87,15 @@ public class OpretFadWindow extends Stage {
                 traeType,
                 tidligereIndhold,
                 status,
-                null   // hylde håndteres et andet sted
+                null
         );
 
         this.close();
     }
 
-    private void showAlert(String title, String msg) {
+    private void showAlert(String msg) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
+        alert.setTitle("Fejl");
         alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();

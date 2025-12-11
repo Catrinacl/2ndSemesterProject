@@ -2,10 +2,8 @@ package TEST;
 
 import Model.*;
 import org.junit.jupiter.api.Test;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class Construction1Test {
@@ -120,7 +118,7 @@ public class Construction1Test {
                 "Eg",
                 "Rødvin",
                 "Tomt",
-                null // hylde = null er ok ifølge konstruktoren
+                null // hylde = null er ok ifølge constructor
         );
 
         // Act + Assert

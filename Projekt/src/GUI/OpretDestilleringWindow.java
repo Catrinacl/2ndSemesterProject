@@ -9,13 +9,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.time.LocalDate;
 
 public class OpretDestilleringWindow extends Stage {
     private TextField txfDestilleringId = new TextField();
     private TextField txfMaltBatch = new TextField();
-    private TextField txfKornsort = new TextField();
     private TextField txfRygemateriale = new TextField();
     private TextField txfKommentar = new TextField();
     private Button btnOpret = new Button("Opret Destillering");

@@ -9,22 +9,16 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static javafx.collections.FXCollections.observableArrayList;
 
 public class ProduktOversigtPane extends GridPane implements Observer {
-
     private TableView<WhiskyProdukt> tableView;
     private final TextField txfsearchBar = new TextField();
 
     private final Button btnVisHistorik = new Button("Vis historik");
     private final Button btnSletValgteProdukt = new Button("Slet Produkt");
     private final Button btnRedigerProdukt = new Button("Rediger Produkt");
-
 
     public ProduktOversigtPane() {
         Controller.addObserver(this);
@@ -70,7 +64,6 @@ public class ProduktOversigtPane extends GridPane implements Observer {
                 alert.setContentText("Vælg et produkt i oversigten for at slette");
                 alert.showAndWait();
             }
-
         });
 
         HBox buttonBox = new HBox(15);
@@ -83,18 +76,22 @@ public class ProduktOversigtPane extends GridPane implements Observer {
     private void initContent() {
         tableView = new TableView<>();
 
+        //Kolonne 1
         TableColumn<WhiskyProdukt, String> columnProduktId = new TableColumn<>("Produkt ID");
         columnProduktId.setCellValueFactory(new PropertyValueFactory<>("produktNr"));
         columnProduktId.setPrefWidth(100);
 
+        //Kolonne 2
         TableColumn<WhiskyProdukt, String> columnNavn = new TableColumn<>("Navn");
         columnNavn.setCellValueFactory(new PropertyValueFactory<>("navn"));
         columnNavn.setPrefWidth(150);
 
+        //Kolonne 3
         TableColumn<WhiskyProdukt, String> columnBeskrivelse = new TableColumn<>("Beskrivelse");
         columnBeskrivelse.setCellValueFactory(new PropertyValueFactory<>("beskrivelse"));
         columnBeskrivelse.setPrefWidth(150);
 
+        //Kolonne 4
         TableColumn<WhiskyProdukt, Boolean> columnErSingleCask = new TableColumn<>("Single Cask");
         columnErSingleCask.setCellValueFactory(new PropertyValueFactory<>("erSingleCask"));
         columnErSingleCask.setPrefWidth(150);
@@ -111,10 +108,12 @@ public class ProduktOversigtPane extends GridPane implements Observer {
             }
         });
 
+        //Kolonne 5
         TableColumn<WhiskyProdukt, String> columnslutAlkoholProcent = new TableColumn<>("Slut alkohol %");
         columnslutAlkoholProcent.setCellValueFactory(new PropertyValueFactory<>("slutAlkoholProcent"));
         columnslutAlkoholProcent.setPrefWidth(150);
 
+        //Kolonne 6
         TableColumn<WhiskyProdukt, String> columnAntalFlasker = new TableColumn<>("Antal Flasker");
         columnAntalFlasker.setCellValueFactory(new PropertyValueFactory<>("antalFlasker"));
         columnAntalFlasker.setPrefWidth(100);
@@ -131,11 +130,8 @@ public class ProduktOversigtPane extends GridPane implements Observer {
     }
 
     public void updateProduktOversigt(String searchText) {
-
-        // Hent alle whiskyprodukter
         List<WhiskyProdukt> alleProdukter = Controller.getWhiskyProdukter();
 
-        // Bestem søgetekst: brug parameter hvis den findes, ellers brug søgefeltet
         String filterText;
         if (searchText != null) {
             filterText = searchText.toLowerCase();
@@ -143,14 +139,11 @@ public class ProduktOversigtPane extends GridPane implements Observer {
             filterText = txfsearchBar.getText().toLowerCase();
         }
 
-        // Liste til resultater
         List<WhiskyProdukt> filteredList = new ArrayList<>();
 
-        // Hvis der ikke søges på noget, vis alle produkter
         if (filterText.isEmpty()) {
             filteredList.addAll(alleProdukter);
         } else {
-            // For-loop der filtrerer efter produktNr, navn eller alkoholprocent
             for (WhiskyProdukt produkt : alleProdukter) {
 
                 String produktNr = produkt.getProduktNr().toLowerCase();
@@ -165,8 +158,6 @@ public class ProduktOversigtPane extends GridPane implements Observer {
                 }
             }
         }
-
-        // Opdater TableView med resultatet
         tableView.setItems(FXCollections.observableArrayList(filteredList));
     }
 

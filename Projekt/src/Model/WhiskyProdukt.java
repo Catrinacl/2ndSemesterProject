@@ -86,10 +86,7 @@ public class WhiskyProdukt implements Serializable {
         aftapninger.add(a);
     }
 
-    
-
     @Override
-
     public String toString() {
         return produktNr + " - " + navn;
     }

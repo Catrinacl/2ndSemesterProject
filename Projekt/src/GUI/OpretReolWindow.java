@@ -54,7 +54,6 @@ public class OpretReolWindow extends Stage {
     }
 
     private void opretReolAction() {
-
         if (txfReolId.getText().isEmpty() || txfReolType.getText().isEmpty() || cbLager.getValue() == null) {
             showAlert("Udfyld alle felter!");
             return;

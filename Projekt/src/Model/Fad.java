@@ -78,21 +78,15 @@ public class Fad implements Serializable {
         if (paafyldninger == null || paafyldninger.isEmpty()) {
             return false;
         }
-        //finder den tidligste dato
         LocalDate earliest = paafyldninger.get(0).getDato();
         for (Paafyldning p : paafyldninger) {
             if (p.getDato().isBefore(earliest)) {
                 earliest = p.getDato();
             }
         }
-        // beregner datoen hvor fader er 3år gammel
         LocalDate treAarDato = earliest.plusYears(3);
 
         return !treAarDato.isAfter(LocalDate.now());
-    }
-
-    public boolean isErKlarTilAftapning() {
-        return erKlarTilAftapning();
     }
 
     public String getKlarTilAftapningTekst() {

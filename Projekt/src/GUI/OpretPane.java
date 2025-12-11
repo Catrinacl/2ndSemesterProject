@@ -14,12 +14,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 public class OpretPane extends GridPane {
-
-
     private TableView<Fad> tableViewFad = new TableView<>();
     private TableView<Destillat> tableViewDestillat = new TableView<>();
     private TableView<Destillering> tableViewDestillering = new TableView<>();
-
 
     public OpretPane() {
         this.setPadding(new Insets(20));

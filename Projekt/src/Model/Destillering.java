@@ -2,7 +2,6 @@ package Model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 
 public class Destillering implements Serializable {
     private String destilleringId;
@@ -10,7 +9,7 @@ public class Destillering implements Serializable {
     private LocalDate slutDato;
     private String maltBatch;
     private String kornsort;
-    private String rygemateriale; //nullable?
+    private String rygemateriale;
     private String kommentar;
 
     public Destillering(String destilleringId, LocalDate startDato, LocalDate slutDato, String maltBatch,

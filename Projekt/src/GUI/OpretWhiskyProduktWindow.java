@@ -79,7 +79,7 @@ public class OpretWhiskyProduktWindow extends Stage {
         String antalFlaskerText = txfAntalFlasker.getText().trim();
 
         if (produktNr.isEmpty() || navn.isEmpty() || slutAlkText.isEmpty() || antalFlaskerText.isEmpty()) {
-            showAlert("Fejl", "Udfyld som minimum Produkt ID, Navn, Slut alkohol % og Antal flasker.");
+            showAlert("Udfyld som minimum Produkt ID, Navn, Slut alkohol % og Antal flasker.");
             return;
         }
 
@@ -89,13 +89,12 @@ public class OpretWhiskyProduktWindow extends Stage {
             slutAlkohol = Double.parseDouble(slutAlkText);
             antalFlasker = Integer.parseInt(antalFlaskerText);
         } catch (NumberFormatException e) {
-            showAlert("Fejl", "Slut alkohol % skal være et tal og antal flasker et helt tal.");
+            showAlert("Slut alkohol % skal være et tal og antal flasker et helt tal.");
             return;
         }
 
         boolean erSingleCask = cbSingleCask.isSelected();
 
-        // ingen VandTilsaetning endnu = null
         whiskyProdukt = Controller.createWhiskyProdukt(
                 produktNr,
                 navn,
@@ -109,9 +108,9 @@ public class OpretWhiskyProduktWindow extends Stage {
         this.close();
     }
 
-    private void showAlert(String title, String msg) {
+    private void showAlert(String msg) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
+        alert.setTitle("Fejl");
         alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();

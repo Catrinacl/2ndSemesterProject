@@ -2,7 +2,6 @@ package GUI;
 
 import Controller.Controller;
 import Model.*;
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,7 +12,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -66,7 +64,6 @@ public class ProduktHistorikWindow extends Stage implements Observer {
         Button btnUdskrivTilFil = new Button("Udskriv til fil");
         pane.add(btnUdskrivTilFil, 2, 1);
         btnUdskrivTilFil.setOnAction(event -> this.udskrivProduktTilFilAction());
-
     }
 
     private void updateAftapningsList() {
@@ -142,7 +139,7 @@ public class ProduktHistorikWindow extends Stage implements Observer {
             printWriter.println();
 
             for (Aftapning aftapning : whiskyProdukt.getAftapninger()) {
-                printWriter.println("Aftapning #" + aftapning.getAftapningsNr() + " - Dato: " + aftapning.getDato());
+                printWriter.println("Aftapnings ID: " + aftapning.getAftapningsNr() + " - Dato: " + aftapning.getDato());
                 printWriter.println("Volumen: " + aftapning.getVolumenILiter() + " L, Alkohol: " + aftapning.getAlkoholProcent() + "%");
 
                 Destillat destillat = aftapning.getDestillat();

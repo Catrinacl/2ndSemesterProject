@@ -21,10 +21,6 @@ public class Reol implements Serializable {
         return reolId;
     }
 
-    public String getReolType() {
-        return reolType;
-    }
-
     public List<Hylde> getHylder() {
         return hylder;
     }
